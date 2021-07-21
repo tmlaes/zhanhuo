@@ -1,0 +1,43 @@
+{
+  "name": "emulator-5554",
+  "chengBaoLevel": 8,
+  "chengQiangLevel": 4,
+  "cangKuLevel": 1,
+  "zhanZhenLevel": 1,
+  "yiYuanLevel": 1,
+  "xueYuanLevel": 0,
+  "rongLianLevel": 0,
+  "shiGuanLevel": 0,
+  "zhenChaLevel": 0,
+  "bingYing": [
+    {
+      "level": 1,
+      "zmTimes": ""
+    },
+    {
+      "level": 0,
+      "zmTimes": ""
+    },
+    {
+      "level": 0,
+      "zmTimes": ""
+    },
+    {
+      "level": 1,
+      "zmTimes": ""
+    }
+  ],
+  "ziYuan": {
+    "nongChang": null,
+    "muChang": null,
+    "shiTou": null,
+    "tie": null,
+    "jiJiu": null,
+    "shiBing": null
+  },
+  "kaiHuang1": 0,
+  "kaiHuang2": 0,
+  "kaiHuang3": 0,
+  "kaiHuang4": 0,
+  "kaiHuang5": 0
+}
