@@ -6,4 +6,6 @@ import (
 
 func main() {
 	process.Process()
+	//devices := adb.Devices()
+	//fmt.Println(devices)
 }

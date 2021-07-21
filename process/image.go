@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	BasePath     = "./temp/"
+	BasePath     = "C:\\Users\\Administrator\\Desktop\\temp\\"
 	CloseImg     = "images/close.png"
 	MasterImg    = "images/pic_0.png"
 	RealImg      = "images/pic_1.png"
@@ -24,6 +24,7 @@ const (
 	BuDuiImg     = "images/budui.png"
 	ZiYuanBaoImg = "images/ziyuanbao.png"
 	ChengBaoImg  = "images/chengbao.png"
+	UpdateImg    = "images/update.png"
 )
 
 func GetText(shotImg image.Image, cutImg *P.Img) string {
@@ -86,7 +87,7 @@ func Compare(imageName string, oldImg string) bool {
 	queryHash, _ := goimagehash.DifferenceHash(imgQuery)
 	hash1, _ := goimagehash.DifferenceHash(img1)
 	distance, _ := queryHash.Distance(hash1)
-	if distance <= 10 {
+	if distance == 0 {
 		return true
 	}
 	return false

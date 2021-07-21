@@ -43,11 +43,11 @@ var (
 	//Bingyin2 2号兵营坐标
 	Bingyin2 = Point{CB.X + 210, CB.Y + 350, CB.X + 200, CB.Y + 470}
 	//Bingyin1 1号兵营坐标
-	Bingyin1 = Point{CC.X - 400, CC.Y - 120, CC.X - 400, CB.Y}
+	Bingyin1 = Point{CC.X - 400, CC.Y - 120, CC.X - 400, CC.Y}
 	//YiYuan 医院
 	YiYuan = Point{CC.X - 230, CC.Y - 30, CC.X - 290, CC.Y + 80}
 	//XueYuan 学院
-	XueYuan = Point{CC.X - 200, CC.Y - 270, CC.X - 260, CC.Y - 160}
+	XueYuan = Point{CC.X - 250, CC.Y - 250, CC.X - 260, CC.Y - 160}
 	//RongLian 熔炼工坊
 	RongLian = Point{CC.X - 150, CC.Y - 310, CC.X - 200, CC.Y - 220}
 	//ShiGuan 使馆
@@ -147,6 +147,8 @@ var (
 	TiaojianTZ = Point{620, 820, 620, 870}
 	//Shengji 升级按钮
 	Shengji = Point{X: 530, Y: 1220}
+	//Free 升级按钮
+	Free = Point{X: 150, Y: 1220}
 	//ZiYuanBao 资源包确认按钮
 	ZiYuanBao = Point{X: 350, Y: 940}
 	//Search 搜索按钮
@@ -182,4 +184,6 @@ var (
 	QiBin = Point{X: 280, Y: 130}
 	//FaShi 法师
 	FaShi = Point{X: 630, Y: 130}
+	//Left 建造页面左向箭头
+	Left = Point{X: 630, Y: 275}
 )

@@ -61,6 +61,21 @@ func Key(key, device string) {
 	time.Sleep(time.Duration(1) * time.Second)
 }
 
+func Scroll(index int, device string) {
+	switch index {
+	case 1:
+		ScreenOne(device)
+	case 2:
+		ScreenTwo(device)
+	case 3:
+		ScreenThree(device)
+	case 4:
+		ScreenFour(device)
+	case 5:
+		ScreenFive(device)
+	}
+}
+
 func ScreenOne(device string) {
 	resetPoint(device)
 	Swipe(P.One.X, P.One.Y, P.One.X_, P.One.Y_, 2, device)

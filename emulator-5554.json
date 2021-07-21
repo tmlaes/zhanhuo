@@ -1,6 +1,6 @@
 {
-  "name": "emulator-5554",
-  "chengBaoLevel": 8,
+  "name": "emulator-5556",
+  "chengBaoLevel": 4,
   "chengQiangLevel": 4,
   "cangKuLevel": 1,
   "zhanZhenLevel": 1,
@@ -23,7 +23,7 @@
       "zmTimes": ""
     },
     {
-      "level": 1,
+      "level": 0,
       "zmTimes": ""
     }
   ],

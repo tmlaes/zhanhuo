@@ -91,3 +91,17 @@ func ChengBaoImg(deviceName string) *Img {
 		270, 20, 160, 40,
 	}
 }
+
+func BuildImg(deviceName string) *Img {
+	return &Img{
+		deviceName + "_build.png",
+		290, 20, 150, 30,
+	}
+}
+
+func UpdateImg(deviceName string) *Img {
+	return &Img{
+		deviceName + "_update.png",
+		440, 1200, 180, 50,
+	}
+}
