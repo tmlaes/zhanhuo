@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 	"zhanhuo/adb"
 	P "zhanhuo/entity"
 )
@@ -26,6 +27,33 @@ const (
 	ChengBaoImg  = "images/chengbao.png"
 	UpdateImg    = "images/update.png"
 )
+
+func CheckStart(deviceName string) bool {
+	//截图
+	shotImg := adb.Screenshot(deviceName)
+	//关闭窗口
+	checkClose(shotImg, deviceName)
+	//校验是否进入主界面
+	return checkComplete(shotImg, deviceName)
+}
+
+func checkComplete(shotImg image.Image, deviceName string) bool {
+	//裁剪领主头像
+	img := P.MasterImg(deviceName)
+	CutImage(shotImg, img)
+	return Compare(img.Name, MasterImg)
+}
+
+//校验是否有需要关闭窗口
+func checkClose(shotImg image.Image, deviceName string) {
+	img := P.CloseImg(deviceName)
+	CutImage(shotImg, img)
+	flag := Compare(img.Name, CloseImg)
+	if flag {
+		fmt.Println(time.Now(), "关闭弹窗")
+		adb.Click(P.Close.X, P.Close.Y, 1, deviceName)
+	}
+}
 
 func GetText(shotImg image.Image, cutImg *P.Img) string {
 	CutImage(shotImg, cutImg)
