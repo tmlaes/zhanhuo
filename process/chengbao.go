@@ -8,31 +8,52 @@ import (
 	"zhanhuo/entity"
 )
 
-type ChengBao struct {
-	account *entity.Account
+func ChengBao(account *entity.Account) {
+	//校验队列1是否处于空闲状态
+	device := account.Name
+	task(device)
+	for {
+		shotImg := adb.Screenshot(device)
+		//队列1
+		text := GetText(shotImg, entity.Task1Img(device))
+		fmt.Println(time.Now(), device, "建筑队列1状态", text)
+		if text == "" {
+			continue
+		}
+		if text == "空闲中" {
+			break
+		}
+		return
+	}
+
+	//关闭任务列表
+	sleep(1)
+	adb.Click(entity.Reset.X, entity.Reset.Y, 1, device)
+
+	shengJi(account)
 }
 
-func (c *ChengBao) ShengJi() {
+func shengJi(account *entity.Account) {
 	//定位
-	device := c.account.Name
-	level := c.account.ChengBaoLevel
+	device := account.Name
+	level := account.ChengBaoLevel
 	key := "level" + strconv.Itoa(level)
 	for _, item := range entity.TaskMap[key] {
 		build := buildMap[item.Name]
-		if c.account.GetLevel(item.Name) == 0 {
+		if account.GetLevel(item.Name) == 0 {
 			fmt.Println(time.Now(), device, "建造", item.Name, build)
 			build.Create(device)
-			c.account.SetLevel(item.Name)
-			c.account.SetLevel(item.Name)
-			c.account.SetLevel(item.Name)
-			c.account.SetLevel(item.Name)
-			c.account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
 			return
 		}
-		if c.account.GetLevel(item.Name) < item.Level {
+		if account.GetLevel(item.Name) < item.Level {
 			fmt.Println(time.Now(), device, "升级", item.Name, build)
 			build.Update(device)
-			c.account.SetLevel(item.Name)
+			account.SetLevel(item.Name)
 			return
 		}
 	}
@@ -53,8 +74,8 @@ func (c *ChengBao) ShengJi() {
 	fmt.Println(time.Now(), device, "点击升级界面升级")
 	adb.Click(entity.Shengji.X, entity.Shengji.Y, 3, device)
 	CheckZiYuanBao(device)
-	c.account.SetLevel("bingYing4")
-	c.account.ChengBaoLevel = c.account.ChengBaoLevel + 1
+	account.SetLevel("bingYing4")
+	account.ChengBaoLevel = account.ChengBaoLevel + 1
 }
 
 var buildMap = make(map[string]Build)

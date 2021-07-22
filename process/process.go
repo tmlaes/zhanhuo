@@ -14,38 +14,13 @@ func Process() {
 	//读取配置
 	for _, device := range devices {
 		account := utils.ReadJons(device)
-		chengbao(account)
+		ChengBao(account)
+		ZhaoMu(account)
+		YeGuai(account)
+		CaiGi(account)
 		utils.WriteJons(account)
 	}
 
-}
-
-func chengbao(account *P.Account) {
-	//校验队列1是否处于空闲状态
-	device := account.Name
-	task(device)
-	for {
-		shotImg := adb.Screenshot(device)
-		//队列1
-		text := GetText(shotImg, P.Task1Img(device))
-		fmt.Println(time.Now(), device, "建筑队列1状态", text)
-		if text == "" {
-			continue
-		}
-		if text == "空闲中" {
-			break
-		}
-		return
-	}
-
-	//关闭任务列表
-	sleep(1)
-	adb.Click(P.Reset.X, P.Reset.Y, 1, device)
-
-	cb := ChengBao{
-		account,
-	}
-	cb.ShengJi()
 }
 
 func task(device string) {
