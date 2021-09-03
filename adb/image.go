@@ -24,6 +24,7 @@ func CheckStart(device string) bool {
 	}
 	//关闭窗口
 	ClosePop(device)
+	ClickPoint(entity.P55, 0, device)
 	//校验是否进入主界面
 	return Compare1(entity.MasterImg(device), device)
 }

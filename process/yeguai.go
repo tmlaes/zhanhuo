@@ -135,7 +135,6 @@ func getMaxLevel(zl int64) int {
 
 func zhiliao(device string) {
 	adb.ClickPoint(entity.Reset, 5, device)
-	adb.ClosePop(device)
 	fmt.Println(utils.Now(), device, "治疗伤兵")
 	adb.ClickPointOffset(entity.YiYuan, -10, -80, 3, device)
 	if adb.Compare1(entity.BackImg(device), device) {
