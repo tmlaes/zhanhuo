@@ -10,9 +10,6 @@ import (
 
 func jiangLi(account *entity.Account) {
 	device := account.Name
-	if statuMap[device] {
-		return
-	}
 	if account.LastUpdateTime == "" {
 		account.LastUpdateTime = utils.DATE_FORMAT
 	}
