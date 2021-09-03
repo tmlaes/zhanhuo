@@ -40,6 +40,8 @@ func build(account *entity.Account) {
 		}
 		if b {
 			account.SetField(item.Name, oldLevel+1)
+			account.BuildTime = getBuildTime(device)
+			utils.WriteJons(account)
 			return
 		}
 	}
@@ -48,6 +50,8 @@ func build(account *entity.Account) {
 		return
 	}
 	account.SetField("ChengBao", level+1)
+	account.BuildTime = getBuildTime(device)
+	utils.WriteJons(account)
 }
 
 func getBuildTime(device string) string {

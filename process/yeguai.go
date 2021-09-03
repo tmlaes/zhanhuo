@@ -9,7 +9,11 @@ import (
 	"zhanhuo/utils"
 )
 
-func YeGuai(id, device string, level int) int {
+func YeGuai(account *entity.Account) int {
+	id := account.Id
+	device := account.Name
+	level := account.GuaiWu
+	defer updateGuaiWu(account, level)
 	closePop(device)
 	fmt.Println(utils.Now(), id, device, "打野")
 	text := GetText(device, entity.TiLiImg(device))
@@ -145,4 +149,9 @@ func zhiliao(device string) {
 func Zhiliao(device string) {
 	fmt.Println(utils.Now(), device, "点击治疗伤完成")
 	adb.ClickPointOffset(entity.YiYuan, -10, -80, 3, device)
+}
+
+func updateGuaiWu(account *entity.Account, level int) {
+	account.SetField("GuaiWu", level)
+	utils.WriteJons(account)
 }

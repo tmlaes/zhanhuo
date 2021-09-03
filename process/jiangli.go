@@ -10,6 +10,9 @@ import (
 
 func jiangLi(account *entity.Account) {
 	device := account.Name
+	if statuMap[device] {
+		return
+	}
 	if account.LastUpdateTime == "" {
 		account.LastUpdateTime = utils.DATE_FORMAT
 	}
@@ -19,16 +22,14 @@ func jiangLi(account *entity.Account) {
 	checkBack(device)
 	if sub.Hours() > 12 {
 		zhengWuJiangli(account.Id, device)
+		taskJiangLi(device)
 		account.LastUpdateTime = now.Format(utils.DATE_FORMAT)
+		utils.WriteJons(account)
 		if statuMap[device] {
 			return
 		}
 	}
 	maCheJiangLi(device)
-	if sub.Hours() > 24 {
-		taskJiangLi(device)
-		account.LastUpdateTime = now.Format(utils.DATE_FORMAT)
-	}
 }
 
 func taskJiangLi(device string) {

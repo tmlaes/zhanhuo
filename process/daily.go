@@ -27,6 +27,7 @@ func daily(account *entity.Account) {
 			adb.ClickMore(entity.P55, 3, 1, device)
 			add := now.Add(time.Duration(15) * time.Second)
 			account.FengShouTime = add.Format(utils.DATE_FORMAT)
+			utils.WriteJons(account)
 		}
 	}
 }

@@ -1,7 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"strings"
 	"time"
 	"zhanhuo/adb"
 	"zhanhuo/entity"
@@ -9,23 +14,22 @@ import (
 )
 
 func main() {
-	//fmt.Println("脚本开始......")
-	//阻止主goroutine 退出
-	//signalChan := make(chan os.Signal, 1)
-	//捕捉 Ctrl+c 和 kill 信号，写入signalChan
-	//signal.Notify(signalChan, syscall.SIGINT, syscall.SIGTERM)
-	// 此处执行处理逻辑
-	//process.Create()
-	for i := 0; i < 5; i++ {
-		process.Process()
-		<-time.After(time.Duration(1) * time.Hour)
+	fmt.Println("类型：1：创建账号 \t 2：升级账号")
+	in := bufio.NewReader(os.Stdin)
+	str, _, err := in.ReadLine()
+	if err != nil {
+		log.Fatal(err)
+	}
+	types, _ := strconv.Atoi(strings.TrimSpace(string(str)))
+	if types == 1 {
+		process.Create()
+	} else {
+		for i := 0; i < 5; i++ {
+			process.Process()
+			<-time.After(time.Duration(1) * time.Hour)
+		}
 	}
 
-	// signalChan阻塞进程
-	//<-signalChan
-
-	// 捕捉信号后在Exit函数中处理信息，例如内存持久化等信息防止丢失
-	//nsqd.Exit()
 	//test()
 }
 

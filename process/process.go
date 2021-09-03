@@ -14,6 +14,7 @@ var wg1 sync.WaitGroup
 var statuMap = make(map[string]bool)
 
 func Process() {
+	fmt.Println("******************升级账号******************")
 	deviceList := utils.ReadDevices()
 	for _, list := range deviceList {
 		//启动设备
@@ -25,11 +26,6 @@ func Process() {
 		}
 		wg1.Wait()
 	}
-	/*var t = time.Tick(30 * time.Minute)
-	for {
-		<-t
-		delayTask()
-	}*/
 }
 
 func startDevice(device string) {
@@ -51,18 +47,13 @@ func doProcess(account *entity.Account) {
 	if statuMap[device] {
 		return
 	}
-	account.BuildTime = getBuildTime(device)
-	utils.WriteJons(account)
 	ZhaoMu(account)
-	ygLevel := YeGuai(account.Id, device, account.GuaiWu)
-	account.SetField("GuaiWu", ygLevel)
-	utils.WriteJons(account)
+	YeGuai(account)
 	if statuMap[device] {
 		return
 	}
 	Caiji(account)
 	Zhiliao(device)
-	//updateLastTime(account)
 	adb.Quit(account.Id)
 }
 
@@ -110,18 +101,4 @@ func addTime(text string) string {
 }
 func delay(times int) {
 	<-time.After(time.Duration(times) * time.Second)
-}
-
-func delayTask() {
-	deviceList := utils.ReadDevices()
-	for _, list := range deviceList {
-		//启动设备
-		devices := adb.Devices_(list)
-		//读取配置
-		for device, _ := range devices {
-			wg1.Add(1)
-			go startDevice(device)
-		}
-		wg1.Wait()
-	}
 }

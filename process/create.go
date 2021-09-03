@@ -9,12 +9,10 @@ import (
 	"zhanhuo/utils"
 )
 
-/**
- * 创建账号
- */
 var wg sync.WaitGroup
 
 func Create() {
+	fmt.Println("******************创建账号******************")
 	deviceList := utils.ReadDevices()
 	for _, list := range deviceList {
 		//启动设备
@@ -56,10 +54,9 @@ func createOne(device string, index string) {
 	}
 	createFive(device)
 	createSix(device)
-	YeGuai(index, device, 0)
 	account := createAccount(device, index)
+	YeGuai(account)
 	Caiji(account)
-	account.BuildTime = getBuildTime(device)
 	updateLastTime(account)
 	adb.Quit(account.Id)
 	utils.WriteJons(account)
@@ -473,7 +470,7 @@ func createAccount(device string, index string) *entity.Account {
 	acc.RongLian = 4
 	acc.ShiGuan = 4
 	acc.ZhenCha = 4
-	acc.GuaiWu = 3
+	acc.GuaiWu = 0
 	acc.BingYing1 = 4
 	acc.BingYing2 = 4
 	acc.NongChang = 5
