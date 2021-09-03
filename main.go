@@ -1,20 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
-	"strconv"
-	"strings"
-	"time"
 	"zhanhuo/adb"
 	"zhanhuo/entity"
-	"zhanhuo/process"
 )
 
 func main() {
-	fmt.Println("类型：1：创建账号 \t 2：升级账号")
+	/*fmt.Println("类型：1：创建账号 \t 2：升级账号")
 	in := bufio.NewReader(os.Stdin)
 	str, _, err := in.ReadLine()
 	if err != nil {
@@ -28,8 +21,8 @@ func main() {
 			process.Process()
 			<-time.After(time.Duration(1) * time.Hour)
 		}
-	}
-
+	}*/
+	fmt.Println(111)
 	//test()
 }
 
@@ -44,7 +37,7 @@ func test() {
 	//adb.ScreenShot("ScreenOne.png", devices[0])
 	shotImg := adb.Screenshot(devices[0])
 	img := entity.JiangLiTaskImg(devices[0])
-	process.CutImage(shotImg, img)
+	adb.CutImage(shotImg, img)
 
 	//text1 := process.GetText1(devices[0], P.Img7(devices[0]))
 	//fmt.Println(text1)

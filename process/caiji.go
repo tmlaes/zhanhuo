@@ -63,12 +63,12 @@ func puTongKuang(account *entity.Account) {
 		adb.ClickPoint(entity.GoTO, 3, device)
 		adb.ClickPoint(entity.P55, 2, device)
 		adb.ClickPoint(entity.P63, 2, device)
-		if utils.Compare1(entity.Img6(device), device) {
+		if adb.Compare1(entity.Img6(device), device) {
 			fmt.Println(utils.Now(), device, "队伍不足")
 			adb.ClickPoint(entity.Back, 2, device)
 			break
 		}
-		text1 := utils.GetText(device, entity.TimeImg(device))
+		text1 := adb.GetText(device, entity.TimeImg(device))
 		fmt.Println(utils.Now(), device, "获取行军时间", text1)
 		if text1 == "" {
 			i = i - 1
@@ -87,10 +87,10 @@ func lianMengKuang(device string) bool {
 	for i := 0; i < len(list); i++ {
 		adb.ClickPoint(entity.P59, 2, device)
 		adb.ClickPoint(entity.P60, 2, device)
-		text := utils.GetText(device, list[i])
+		text := adb.GetText(device, list[i])
 		if text == "" {
 			list[i].Y = list[i].Y + 30
-			text = utils.GetText(device, list[i])
+			text = adb.GetText(device, list[i])
 			if text == "" {
 				adb.ClickPoint(entity.Back, 2, device)
 				fmt.Println(utils.Now(), device, "未检测到超级矿")
@@ -103,12 +103,12 @@ func lianMengKuang(device string) bool {
 		adb.ClickPoint(pp, 3, device)
 		adb.ClickPoint(entity.P61, 2, device)
 
-		if utils.Compare1(entity.Img6(device), device) {
+		if adb.Compare1(entity.Img6(device), device) {
 			fmt.Println(utils.Now(), device, "队伍不足")
 			adb.ClickPoint(entity.Back, 2, device)
 			return true
 		}
-		text1 := utils.GetText(device, entity.TimeImg(device))
+		text1 := adb.GetText(device, entity.TimeImg(device))
 		fmt.Println(utils.Now(), device, "获取行军时间", text1)
 		if text1 == "" {
 			fmt.Println(utils.Now(), device, "未获取到采集时间")
@@ -120,7 +120,7 @@ func lianMengKuang(device string) bool {
 }
 
 func getCaijiTime(device string) string {
-	text := utils.GetText(device, entity.Img7(device))
+	text := adb.GetText(device, entity.Img7(device))
 	fmt.Println(utils.Now(), device, "获取采集时间", text)
 	st := addTime(text)
 	fmt.Println(utils.Now(), device, "采集结束时间", st)

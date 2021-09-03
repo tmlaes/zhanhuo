@@ -20,7 +20,7 @@ func build(account *entity.Account) {
 		}
 	} else {
 		task(device)
-		if !utils.Compare1(entity.TaskBuild1Img(device), device) {
+		if !adb.Compare1(entity.TaskBuild1Img(device), device) {
 			fmt.Println(utils.Now(), device, "建筑队列不是空闲中")
 			adb.ClickPoint(entity.P55, 2, device)
 			return
@@ -59,7 +59,7 @@ func getBuildTime(device string) string {
 	defer adb.ClickPoint(entity.P55, 2, device)
 	task(device)
 	for i := 0; i < 10; i++ {
-		text := utils.GetText1(device, entity.Task1Img(device))
+		text := adb.GetText1(device, entity.Task1Img(device))
 		fmt.Println(utils.Now(), device, "建筑结束时间", text)
 		if text != "" {
 			st := addTime(text)

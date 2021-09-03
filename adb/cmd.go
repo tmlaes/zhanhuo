@@ -48,7 +48,7 @@ func ClickPoint(point entity.Point, times int, device string) {
 	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
 		fmt.Println(utils.Now(), device, "校验弹窗")
-		utils.ClosePop(device)
+		ClosePop(device)
 	}
 	adbShellInputClick(strconv.Itoa(point.X), strconv.Itoa(point.Y), device)
 	if times > 0 {
@@ -66,7 +66,7 @@ func ClickPointOffset(point entity.Point, x, y int, times int, device string) {
 	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
 		fmt.Println(utils.Now(), device, "校验弹窗")
-		utils.ClosePop(device)
+		ClosePop(device)
 	}
 	adbShellInputClick(strconv.Itoa(point.X+x), strconv.Itoa(point.Y+y), device)
 	delay(times)
@@ -81,7 +81,7 @@ func ClickMore(point entity.Point, n, times int, device string) {
 	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
 		fmt.Println(utils.Now(), device, "校验弹窗")
-		utils.ClosePop(device)
+		ClosePop(device)
 	}
 	for i := 0; i < n; i++ {
 		adbShellInputClick(strconv.Itoa(point.X), strconv.Itoa(point.Y), device)

@@ -1,4 +1,4 @@
-package utils
+package adb
 
 import (
 	"errors"
@@ -10,7 +10,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-	"zhanhuo/adb"
 	"zhanhuo/entity"
 )
 
@@ -20,8 +19,8 @@ const (
 
 func CheckStart(device string) bool {
 	if Compare1(entity.Img8(device), device) {
-		adb.ClickPoint(entity.P64, 2, device)
-		adb.ClickPoint(entity.P55, 1, device)
+		ClickPoint(entity.P64, 2, device)
+		ClickPoint(entity.P55, 1, device)
 	}
 	//关闭窗口
 	ClosePop(device)
@@ -31,7 +30,7 @@ func CheckStart(device string) bool {
 
 func ClosePop(device string) {
 	if Compare1(entity.CloseImg(device), device) {
-		adb.ClickPoint(entity.Close, 2, device)
+		ClickPoint(entity.Close, 2, device)
 	}
 	CheckBack(device)
 }
@@ -39,7 +38,7 @@ func ClosePop(device string) {
 func CheckBack(device string) {
 	for {
 		if Compare1(entity.BackImg(device), device) {
-			adb.ClickPoint(entity.Back, 2, device)
+			ClickPoint(entity.Back, 2, device)
 		} else {
 			return
 		}
@@ -47,20 +46,20 @@ func CheckBack(device string) {
 }
 
 func GetText(device string, cutImg *entity.Img) string {
-	shotImg := adb.Screenshot(device)
+	shotImg := Screenshot(device)
 	CutImage(shotImg, cutImg)
 	return ocr(cutImg.Name)
 }
 
 func GetText1(device string, cutImg *entity.OcrImg) string {
-	shotImg := adb.Screenshot(device)
+	shotImg := Screenshot(device)
 	CutImage1(shotImg, cutImg)
 	transparentImg(cutImg)
 	return ocr(cutImg.Name)
 }
 
 func Compare1(cutImg *entity.Img, device string) bool {
-	shotImg := adb.Screenshot(device)
+	shotImg := Screenshot(device)
 	CutImage(shotImg, cutImg)
 	return Compare(cutImg)
 }

@@ -32,7 +32,7 @@ func createOne(device string, index string) {
 	adb.ClickMore(entity.P2, 6, 2, device)
 	ticker := time.NewTicker(3 * time.Second)
 	for range ticker.C {
-		startText := utils.GetText(device, entity.StartImg(device))
+		startText := adb.GetText(device, entity.StartImg(device))
 		fmt.Println(utils.Now(), startText)
 		if startText == "贝拉" {
 			fmt.Println(utils.Now(), "已进入开始界面")
@@ -114,7 +114,7 @@ func createTwo(id, device string) {
 			return
 		}
 		img := entity.ChengBaoImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			break
 		}
 		adb.ClickPoint(entity.P27, 2, device)
@@ -175,7 +175,7 @@ func createThree(id, device string) {
 	adb.ScreenOne(device)
 	adb.ClickPoint(entity.Bingyin2, 3, device)
 	for i := 0; i < 6; i++ {
-		if utils.Compare1(entity.BingYing0Img(device), device) {
+		if adb.Compare1(entity.BingYing0Img(device), device) {
 			break
 		}
 		adb.ClickPoint(entity.Left, 2, device)
@@ -205,7 +205,7 @@ func createThree(id, device string) {
 			return
 		}
 		img := entity.CangKuImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			break
 		}
 		adb.ScreenOne(device)
@@ -224,7 +224,7 @@ func createThree(id, device string) {
 			return
 		}
 		img := entity.ZhanZhengImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			break
 		}
 		adb.ScreenOne(device)
@@ -252,7 +252,7 @@ func createFour(id, device string) {
 			return
 		}
 		img := entity.YiYuanImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			break
 		}
 		adb.ScreenTwo(device)
@@ -288,7 +288,7 @@ func createFour(id, device string) {
 	adb.ClickPoint(entity.ZY18, 3, device)
 	for i := 0; i < 5; i++ {
 		img := entity.ShiBingImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			break
 		}
 		adb.ClickPoint(entity.Left, 2, device)
@@ -395,7 +395,7 @@ func check1(id, device string) {
 			return
 		}
 		img := entity.XieYiImg(device)
-		if utils.Compare1(img, device) {
+		if adb.Compare1(img, device) {
 			adb.ClickPoint(entity.P39, 2, device)
 			return
 		}

@@ -61,7 +61,7 @@ func start(device string) {
 	adb.ClickPoint(entity.Game, 30, device)
 	ticker := time.NewTicker(3 * time.Second)
 	for range ticker.C {
-		if utils.CheckStart(device) {
+		if adb.CheckStart(device) {
 			fmt.Println(utils.Now(), device, "已进入游戏界面")
 			return
 		}

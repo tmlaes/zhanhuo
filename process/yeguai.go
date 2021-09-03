@@ -15,7 +15,7 @@ func YeGuai(account *entity.Account) int {
 	level := account.GuaiWu
 	defer updateGuaiWu(account, level)
 	fmt.Println(utils.Now(), id, device, "打野")
-	text := utils.GetText(device, entity.TiLiImg(device))
+	text := adb.GetText(device, entity.TiLiImg(device))
 	v, _ := strconv.Atoi(text)
 	fmt.Println(utils.Now(), id, device, "体力值：", v)
 	if v < 10 {
@@ -38,7 +38,7 @@ func YeGuai(account *entity.Account) int {
 		if v < 10 {
 			break
 		}
-		utils.ClosePop(device)
+		adb.ClosePop(device)
 		adb.ClickPoint(entity.Search, 2, device)
 		adb.ClickPoint(entity.GW, 1, device)
 		if maxLevel > level {
@@ -53,10 +53,10 @@ func YeGuai(account *entity.Account) int {
 		for ; j < 5; j++ {
 			fmt.Println(utils.Now(), id, device, "点击怪物")
 			adb.ClickPoint(entity.GgW, 1, device)
-			if utils.Compare1(entity.Img3(device), device) {
+			if adb.Compare1(entity.Img3(device), device) {
 				break
 			}
-			if utils.Compare1(entity.Img9(device), device) {
+			if adb.Compare1(entity.Img9(device), device) {
 				adb.ClickPoint(entity.GoJi, 2, device)
 				adb.ClickPoint(entity.P77, 1, device)
 				adb.ClickPoint(entity.GoTO, 2, device)
@@ -68,7 +68,7 @@ func YeGuai(account *entity.Account) int {
 			continue
 		}
 		adb.ClickPoint(entity.GoJi, 2, device)
-		text1 := utils.GetText(device, entity.TimeImg(device))
+		text1 := adb.GetText(device, entity.TimeImg(device))
 		fmt.Println(utils.Now(), id, device, "获取行军时间", text1)
 		split := strings.Split(text1, ":")
 		min, _ := strconv.Atoi(split[0])
@@ -101,19 +101,19 @@ func getZhanLi(id, device string) int64 {
 		}
 		fmt.Println(utils.Now(), id, device, "点击怪物")
 		adb.ClickPoint(entity.GgW, 1, device)
-		if utils.Compare1(entity.Img3(device), device) {
+		if adb.Compare1(entity.Img3(device), device) {
 			break
 		}
 	}
 	adb.ClickPoint(entity.GoJi, 2, device)
-	if utils.Compare1(entity.Img6(device), device) {
+	if adb.Compare1(entity.Img6(device), device) {
 		fmt.Println(utils.Now(), id, device, "队伍不足")
 		adb.ClickPoint(entity.Back, 2, device)
 		return 0
 	}
 	adb.ClickPoint(entity.P57, 2, device)
 	adb.ClickPoint(entity.P58, 2, device)
-	text := utils.GetText(device, entity.Img4(device))
+	text := adb.GetText(device, entity.Img4(device))
 	zl, err := strconv.ParseInt(text, 10, 64)
 	if err != nil {
 		fmt.Println(err)
@@ -135,10 +135,10 @@ func getMaxLevel(zl int64) int {
 
 func zhiliao(device string) {
 	adb.ClickPoint(entity.Reset, 5, device)
-	utils.ClosePop(device)
+	adb.ClosePop(device)
 	fmt.Println(utils.Now(), device, "治疗伤兵")
 	adb.ClickPointOffset(entity.YiYuan, -10, -80, 3, device)
-	if utils.Compare1(entity.BackImg(device), device) {
+	if adb.Compare1(entity.BackImg(device), device) {
 		adb.ClickPoint(entity.CF, 1, device)
 		checkZiYuanBao(device)
 	}
