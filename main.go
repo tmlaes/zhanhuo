@@ -1,17 +1,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
+	"time"
 	"zhanhuo/adb"
 	"zhanhuo/entity"
+	"zhanhuo/process"
 )
 
 func main() {
-	/*fmt.Println("类型：1：创建账号 \t 2：升级账号")
+	fmt.Println("类型：1：创建账号 \t 2：升级账号")
 	in := bufio.NewReader(os.Stdin)
 	str, _, err := in.ReadLine()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 	}
 	types, _ := strconv.Atoi(strings.TrimSpace(string(str)))
 	if types == 1 {
@@ -21,8 +27,7 @@ func main() {
 			process.Process()
 			<-time.After(time.Duration(1) * time.Hour)
 		}
-	}*/
-	fmt.Println(111)
+	}
 	//test()
 }
 
