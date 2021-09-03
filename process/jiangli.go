@@ -32,7 +32,6 @@ func jiangLi(account *entity.Account) {
 }
 
 func taskJiangLi(device string) {
-	fmt.Println(utils.Now(), device, "点击任务奖励")
 	adb.ClickPoint(entity.P41, 3, device)
 	if !Compare1(entity.JiangLiTaskImg(device), device) {
 		fmt.Println(utils.Now(), device, "不是奖励页面")
@@ -79,8 +78,8 @@ func taskJiangLi(device string) {
 func zhengWuJiangli(id, device string) {
 	fmt.Println(utils.Now(), device, "领取政务日常奖励")
 	adb.ScreenOne(device)
-	adb.ClickPoint(entity.Zhengwu, 2, device)
-	adb.ClickPoint(entity.P55, 2, device)
+	adb.ClickPoint(entity.Zhengwu, 1, device)
+	adb.ClickPoint(entity.P55, 1, device)
 	adb.ClickPoint(entity.Zhengwu, 2, device)
 	adb.ClickPoint_(entity.Zhengwu, 3, device)
 

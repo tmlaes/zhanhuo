@@ -9,7 +9,8 @@ import (
 	"os/exec"
 	"strconv"
 	"time"
-	P "zhanhuo/entity"
+	"zhanhuo/entity"
+	"zhanhuo/utils"
 )
 
 func Devices() []string {
@@ -43,9 +44,10 @@ func Devices_(arr []string) map[string]string {
 	return deviceMap
 }
 
-func ClickPoint(point P.Point, times int, device string) {
+func ClickPoint(point entity.Point, times int, device string) {
+	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
-		fmt.Println("校验弹窗")
+		fmt.Println(utils.Now(), device, "校验弹窗")
 		close1(device)
 	}
 	adbShellInputClick(strconv.Itoa(point.X), strconv.Itoa(point.Y), device)
@@ -54,12 +56,14 @@ func ClickPoint(point P.Point, times int, device string) {
 	}
 }
 
-func ClickPoint_(point P.Point, times int, device string) {
+func ClickPoint_(point entity.Point, times int, device string) {
+	fmt.Println(utils.Now(), device, point.Desc)
 	adbShellInputClick(strconv.Itoa(point.X_), strconv.Itoa(point.Y_), device)
 	delay(times)
 }
 
-func ClickPointOffset(point P.Point, x, y int, times int, device string) {
+func ClickPointOffset(point entity.Point, x, y int, times int, device string) {
+	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
 		close1(device)
 	}
@@ -67,12 +71,13 @@ func ClickPointOffset(point P.Point, x, y int, times int, device string) {
 	delay(times)
 }
 
-func ClickPointOffset_(point P.Point, x, y int, times int, device string) {
+func ClickPointOffset_(point entity.Point, x, y int, times int, device string) {
 	adbShellInputClick(strconv.Itoa(point.X_+x), strconv.Itoa(point.Y_+y), device)
 	delay(times)
 }
 
-func ClickMore(point P.Point, n, times int, device string) {
+func ClickMore(point entity.Point, n, times int, device string) {
+	fmt.Println(utils.Now(), device, point.Desc)
 	if point.Check {
 		close1(device)
 	}

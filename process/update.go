@@ -51,7 +51,7 @@ func update(id, operation, device string) bool {
 }
 
 func updateChengbao(id, device string) {
-	fmt.Println(utils.Now(), "升级城堡")
+	fmt.Println(utils.Now(), id, device, "升级城堡")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -71,7 +71,7 @@ func updateChengbao(id, device string) {
 }
 
 func updateChengQiang(id, device string) {
-	fmt.Println(utils.Now(), "升级城墙")
+	fmt.Println(utils.Now(), id, device, "升级城墙")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -92,7 +92,7 @@ func updateChengQiang(id, device string) {
 }
 
 func updateCangku(id, device string) {
-	fmt.Println(utils.Now(), "升级仓库")
+	fmt.Println(utils.Now(), id, device, "升级仓库")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -112,7 +112,7 @@ func updateCangku(id, device string) {
 }
 
 func updateZhanZheng(id, device string) {
-	fmt.Println(utils.Now(), "升级战争广场")
+	fmt.Println(utils.Now(), id, device, "升级战争广场")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -132,7 +132,7 @@ func updateZhanZheng(id, device string) {
 }
 
 func updateYiYuan(id, device string) {
-	fmt.Println(utils.Now(), "升级医院")
+	fmt.Println(utils.Now(), id, device, "升级医院")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -153,7 +153,7 @@ func updateYiYuan(id, device string) {
 }
 
 func updateXueyuan(id, device string) {
-	fmt.Println(utils.Now(), "升级学院")
+	fmt.Println(utils.Now(), id, device, "升级学院")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -174,7 +174,7 @@ func updateXueyuan(id, device string) {
 }
 
 func updateRongLian(id, device string) {
-	fmt.Println(utils.Now(), "升级熔炼")
+	fmt.Println(utils.Now(), id, device, "升级熔炼")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -195,7 +195,7 @@ func updateRongLian(id, device string) {
 }
 
 func updateShiGuan(id, device string) {
-	fmt.Println(utils.Now(), "升级使馆")
+	fmt.Println(utils.Now(), id, device, "升级使馆")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -216,7 +216,7 @@ func updateShiGuan(id, device string) {
 }
 
 func updateZhenCha(id, device string) {
-	fmt.Println(utils.Now(), "升级侦察")
+	fmt.Println(utils.Now(), id, device, "升级侦察")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -236,7 +236,7 @@ func updateZhenCha(id, device string) {
 }
 
 func updateBingYing1(id, device string) {
-	fmt.Println(utils.Now(), "升级兵营1")
+	fmt.Println(utils.Now(), id, device, "升级兵营1")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -257,7 +257,7 @@ func updateBingYing1(id, device string) {
 }
 
 func updateBingYing2(id, device string) {
-	fmt.Println(utils.Now(), "升级兵营2")
+	fmt.Println(utils.Now(), id, device, "升级兵营2")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -277,7 +277,7 @@ func updateBingYing2(id, device string) {
 }
 
 func updateNongChang(id, device string) {
-	fmt.Println(utils.Now(), "升级农场")
+	fmt.Println(utils.Now(), id, device, "升级农场")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -297,7 +297,7 @@ func updateNongChang(id, device string) {
 }
 
 func updateMuChang(id, device string) {
-	fmt.Println(utils.Now(), "升级木场")
+	fmt.Println(utils.Now(), id, device, "升级木场")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -317,7 +317,7 @@ func updateMuChang(id, device string) {
 }
 
 func updateShiBing(id, device string) {
-	fmt.Println(utils.Now(), "升级士兵训练营")
+	fmt.Println(utils.Now(), id, device, "升级士兵训练营")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
@@ -337,7 +337,7 @@ func updateShiBing(id, device string) {
 }
 
 func updateJiJiu(id, device string) {
-	fmt.Println(utils.Now(), "升级急救帐篷")
+	fmt.Println(utils.Now(), id, device, "升级急救帐篷")
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)

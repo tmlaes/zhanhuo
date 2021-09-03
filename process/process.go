@@ -81,7 +81,6 @@ func start(device string) {
 func task(device string) {
 	//第一步打开任务列表
 	adb.ScreenZero(device)
-	fmt.Println(utils.Now(), device, "打开任务列表")
 	adb.ClickPoint(entity.Task, 2, device)
 }
 

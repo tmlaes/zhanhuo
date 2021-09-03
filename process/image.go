@@ -11,8 +11,7 @@ import (
 	"os/exec"
 	"strings"
 	"zhanhuo/adb"
-	P "zhanhuo/entity"
-	"zhanhuo/utils"
+	"zhanhuo/entity"
 )
 
 const (
@@ -28,28 +27,25 @@ func CheckStart(deviceName string) bool {
 
 func checkComplete(deviceName string) bool {
 	//裁剪领主头像
-	return Compare1(P.MasterImg(deviceName), deviceName)
+	return Compare1(entity.MasterImg(deviceName), deviceName)
 }
 
 //校验是否有需要关闭窗口
 func closePop(device string) {
-	if Compare1(P.Img8(device), device) {
-		fmt.Println(utils.Now(), device, "领取奖励")
-		adb.ClickPoint(P.P64, 2, device)
-		adb.ClickPoint(P.P55, 1, device)
+	if Compare1(entity.Img8(device), device) {
+		adb.ClickPoint(entity.P64, 2, device)
+		adb.ClickPoint(entity.P55, 1, device)
 	}
-	if Compare1(P.CloseImg(device), device) {
-		fmt.Println(utils.Now(), device, "关闭弹窗")
-		adb.ClickPoint(P.Close, 2, device)
+	if Compare1(entity.CloseImg(device), device) {
+		adb.ClickPoint(entity.Close, 2, device)
 	}
 	checkBack(device)
 }
 
 func checkBack(device string) {
 	for {
-		if Compare1(P.BackImg(device), device) {
-			fmt.Println(utils.Now(), device, "返回弹窗")
-			adb.ClickPoint(P.Back, 2, device)
+		if Compare1(entity.BackImg(device), device) {
+			adb.ClickPoint(entity.Back, 2, device)
 		} else {
 			return
 		}
@@ -57,26 +53,26 @@ func checkBack(device string) {
 
 }
 
-func GetText(device string, cutImg *P.Img) string {
+func GetText(device string, cutImg *entity.Img) string {
 	shotImg := adb.Screenshot(device)
 	CutImage(shotImg, cutImg)
 	return ocr(cutImg.Name)
 }
 
-func GetText1(device string, cutImg *P.OcrImg) string {
+func GetText1(device string, cutImg *entity.OcrImg) string {
 	shotImg := adb.Screenshot(device)
 	CutImage1(shotImg, cutImg)
 	transparentImg(cutImg)
 	return ocr(cutImg.Name)
 }
 
-func Compare1(cutImg *P.Img, device string) bool {
+func Compare1(cutImg *entity.Img, device string) bool {
 	shotImg := adb.Screenshot(device)
 	CutImage(shotImg, cutImg)
 	return Compare(cutImg)
 }
 
-func CutImage(shotImg image.Image, cutImg *P.Img) error {
+func CutImage(shotImg image.Image, cutImg *entity.Img) error {
 	var subImg image.Image
 	var x = cutImg.X
 	var y = cutImg.Y
@@ -101,7 +97,7 @@ func CutImage(shotImg image.Image, cutImg *P.Img) error {
 	return png.Encode(f, subImg)
 }
 
-func CutImage1(shotImg image.Image, cutImg *P.OcrImg) error {
+func CutImage1(shotImg image.Image, cutImg *entity.OcrImg) error {
 	var subImg image.Image
 	var x = cutImg.X
 	var y = cutImg.Y
@@ -139,7 +135,7 @@ func ocr(imgPath string) string {
 	return s
 }
 
-func Compare(cutImg *P.Img) bool {
+func Compare(cutImg *entity.Img) bool {
 	queryFile, _ := os.Open(cutImg.Path)
 	file1, _ := os.Open(BasePath + cutImg.Name)
 	defer os.Remove(BasePath + cutImg.Name)
@@ -157,7 +153,7 @@ func Compare(cutImg *P.Img) bool {
 }
 
 //把图片背景设置成透明
-func transparentImg(img *P.OcrImg) {
+func transparentImg(img *entity.OcrImg) {
 	imgArr := imgo.MustRead(BasePath + img.Name)
 	for i := 0; i < img.H; i++ {
 		for j := 0; j < img.W; j++ {

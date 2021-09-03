@@ -8,7 +8,6 @@ import (
 	"image/png"
 	"os"
 	"zhanhuo/entity"
-	"zhanhuo/utils"
 )
 
 const (
@@ -20,14 +19,12 @@ func close1(device string) {
 	img1 := entity.CloseImg(device)
 	cutImage2(shotImg, img1)
 	if compare2(img1) {
-		fmt.Println(utils.Now(), device, "关闭弹窗")
 		ClickPoint(entity.Close, 2, device)
 		ClickPoint(entity.P55, 2, device)
 	}
 	img2 := entity.BackImg(device)
 	cutImage2(shotImg, img2)
 	if compare2(img2) {
-		fmt.Println(utils.Now(), device, "返回弹窗")
 		ClickPoint(entity.Back, 2, device)
 		ClickPoint(entity.P55, 2, device)
 	}
