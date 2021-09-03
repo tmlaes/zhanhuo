@@ -8,7 +8,6 @@ import (
 	"strings"
 	"time"
 	"zhanhuo/adb"
-	"zhanhuo/entity"
 	"zhanhuo/process"
 )
 
@@ -40,10 +39,10 @@ func test() {
 	//	adb.ScreenSeven(devices[0])
 	//adb.ScreenTwo(devices[0])
 	//adb.ScreenShot("ScreenOne.png", devices[0])
-	shotImg := adb.Screenshot(devices[0])
-	img := entity.JiangLiTaskImg(devices[0])
-	adb.CutImage(shotImg, img)
-
+	//shotImg := adb.Screenshot(devices[0])
+	//img := entity.Close2Img(devices[0])
+	//adb.CutImage(shotImg, img)
+	//adb.ClickPoint(entity.Close2,0,devices[0])
 	//text1 := process.GetText1(devices[0], P.Img7(devices[0]))
 	//fmt.Println(text1)
 	/*if process.Compare1(entity.ShiBingImg(devices[0]), devices[0]) {

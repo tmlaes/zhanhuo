@@ -15,9 +15,9 @@ type OcrImg struct {
 
 func StartImg(deviceName string) *Img {
 	return &Img{
-		deviceName + "_start_thumb.png",
-		"",
-		330, 1050, 50, 50,
+		deviceName + "_beila.png",
+		"images/beila.png",
+		330, 1050, 55, 30,
 	}
 }
 
@@ -65,6 +65,21 @@ func CloseImg(deviceName string) *Img {
 		deviceName + "_close.png",
 		"images/close.png",
 		630, 250, 40, 30,
+	}
+}
+
+func Close1Img(deviceName string) *Img {
+	return &Img{
+		deviceName + "_close1.png",
+		"images/close1.png",
+		640, 210, 20, 30,
+	}
+}
+func Close2Img(deviceName string) *Img {
+	return &Img{
+		deviceName + "_close2.png",
+		"images/close2.png",
+		615, 250, 30, 30,
 	}
 }
 

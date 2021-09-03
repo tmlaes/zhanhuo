@@ -29,8 +29,29 @@ func CheckStart(device string) bool {
 }
 
 func ClosePop(device string) {
-	if Compare1(entity.CloseImg(device), device) {
+	shotImg := Screenshot(device)
+	img := entity.CloseImg(device)
+	CutImage(shotImg, img)
+	if Compare(img) {
 		ClickPoint(entity.Close, 2, device)
+	}
+	img1 := entity.Close1Img(device)
+	CutImage(shotImg, img1)
+	if Compare(img1) {
+		ClickPoint(entity.Close1, 2, device)
+	}
+	img2 := entity.Close2Img(device)
+	CutImage(shotImg, img2)
+	if Compare(img2) {
+		ClickPoint(entity.Close2, 2, device)
+	}
+	img3 := entity.StartImg(device)
+	CutImage(shotImg, img3)
+	if Compare(img3) {
+		//贝拉对话
+		ClickPoint(entity.P55, 0, device)
+		ClickPoint(entity.P55, 0, device)
+		ClickPoint(entity.P55, 0, device)
 	}
 	CheckBack(device)
 }

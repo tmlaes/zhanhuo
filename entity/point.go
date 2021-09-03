@@ -13,6 +13,8 @@ var (
 	Game       = Point{X: 640, Y: 120, Desc: "游戏启动坐标"}
 	Reset      = Point{X: 70, Y: 1220, Check: true, Desc: "左下角城内外切换坐标"}
 	Close      = Point{X: 650, Y: 270, Desc: "弹窗关闭按钮"}
+	Close1     = Point{X: 650, Y: 220, Desc: "弹窗关闭按钮"}
+	Close2     = Point{X: 630, Y: 265, Desc: "弹窗关闭按钮"}
 	Back       = Point{X: 40, Y: 30, Desc: "返回按钮"}
 	Task       = Point{X: 20, Y: 650, Check: true, Desc: "左边任务列表展开按钮"}
 	CB         = Point{340, 350, 200, 500, true, "城堡坐标"}
