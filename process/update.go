@@ -63,7 +63,7 @@ func updateChengbao(id, device string) {
 		adb.ClickPoint(entity.CB, 2, device)
 		adb.ClickPoint_(entity.CB, 3, device)
 		img := entity.ChengBaoImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -84,7 +84,7 @@ func updateChengQiang(id, device string) {
 		adb.ClickPoint(entity.CC, 2, device)
 		adb.ClickPoint_(entity.CC, 3, device)
 		img := entity.ChengQiangImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -104,7 +104,7 @@ func updateCangku(id, device string) {
 		adb.ClickPoint(entity.Cangku, 2, device)
 		adb.ClickPoint_(entity.Cangku, 3, device)
 		img := entity.CangKuImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -124,7 +124,7 @@ func updateZhanZheng(id, device string) {
 		adb.ClickPoint(entity.ZhanZhen, 2, device)
 		adb.ClickPoint_(entity.ZhanZhen, 3, device)
 		img := entity.ZhanZhengImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -145,7 +145,7 @@ func updateYiYuan(id, device string) {
 		adb.ClickPoint(entity.YiYuan, 2, device)
 		adb.ClickPoint_(entity.YiYuan, 3, device)
 		img := entity.YiYuanImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -166,7 +166,7 @@ func updateXueyuan(id, device string) {
 		adb.ClickPoint(entity.XueYuan, 2, device)
 		adb.ClickPoint_(entity.XueYuan, 3, device)
 		img := entity.XueYuanImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -187,7 +187,7 @@ func updateRongLian(id, device string) {
 		adb.ClickPoint(entity.RongLian, 2, device)
 		adb.ClickPoint_(entity.RongLian, 3, device)
 		img := entity.RongLianImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -208,7 +208,7 @@ func updateShiGuan(id, device string) {
 		adb.ClickPoint(entity.ShiGuan, 2, device)
 		adb.ClickPoint_(entity.ShiGuan, 3, device)
 		img := entity.ShiGuanImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -228,7 +228,7 @@ func updateZhenCha(id, device string) {
 		adb.ClickPoint(entity.ZhenCha, 2, device)
 		adb.ClickPoint_(entity.ZhenCha, 3, device)
 		img := entity.ZhenChaImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -249,7 +249,7 @@ func updateBingYing1(id, device string) {
 		adb.ClickPoint(entity.Bingyin1, 2, device)
 		adb.ClickPoint_(entity.Bingyin1, 3, device)
 		img := entity.BingYingImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -269,7 +269,7 @@ func updateBingYing2(id, device string) {
 		adb.ClickPoint(entity.Bingyin2, 2, device)
 		adb.ClickPoint_(entity.Bingyin2, 3, device)
 		img := entity.BingYingImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -289,7 +289,7 @@ func updateNongChang(id, device string) {
 		adb.ClickPoint(entity.ZY3, 2, device)
 		adb.ClickPoint_(entity.ZY3, 3, device)
 		img := entity.NongChangImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -309,7 +309,7 @@ func updateMuChang(id, device string) {
 		adb.ClickPoint(entity.ZY, 2, device)
 		adb.ClickPoint_(entity.ZY, 3, device)
 		img := entity.MuChangImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -329,7 +329,7 @@ func updateShiBing(id, device string) {
 		adb.ClickPoint(entity.ZY14, 2, device)
 		adb.ClickPoint_(entity.ZY14, 3, device)
 		img := entity.ShiBingImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -349,7 +349,7 @@ func updateJiJiu(id, device string) {
 		adb.ClickPoint(entity.ZY15, 2, device)
 		adb.ClickPoint_(entity.ZY15, 3, device)
 		img := entity.JiJiuImg(device)
-		if Compare1(img, device) {
+		if utils.Compare1(img, device) {
 			break
 		}
 	}
@@ -385,10 +385,10 @@ func updateTie(device string) {
 }
 
 func checkZiYuanBao(device string) bool {
-	flag := Compare1(entity.ZiYuanBaoImg(device), device)
+	flag := utils.Compare1(entity.ZiYuanBaoImg(device), device)
 	if flag {
 		fmt.Println(utils.Now(), device, "点击快速使用资源包")
-		flag = Compare1(entity.ZiYuanBaoActImg(device), device)
+		flag = utils.Compare1(entity.ZiYuanBaoActImg(device), device)
 		if flag {
 			fmt.Println(utils.Now(), device, "点击确认按钮")
 			adb.ClickPoint(entity.ZiYuanBao, 2, device)
@@ -406,9 +406,9 @@ func checkZiYuanBao(device string) bool {
 func checkLianMengLiWu(device string) {
 	adb.ClickPoint(entity.P85, 0, device)
 	adb.ClickPoint(entity.P85, 2, device)
-	if Compare1(entity.Img11(device), device) {
+	if utils.Compare1(entity.Img11(device), device) {
 		for {
-			if Compare1(entity.Img12(device), device) {
+			if utils.Compare1(entity.Img12(device), device) {
 				adb.ClickMore(entity.P84, 2, 2, device)
 			} else {
 				adb.ClickPoint(entity.Back, 2, device)

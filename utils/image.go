@@ -1,4 +1,4 @@
-package process
+package utils
 
 import (
 	"errors"
@@ -18,31 +18,25 @@ const (
 	BasePath = "C:\\Users\\Administrator\\Desktop\\temp\\"
 )
 
-func CheckStart(deviceName string) bool {
-	//关闭窗口
-	closePop(deviceName)
-	//校验是否进入主界面
-	return checkComplete(deviceName)
-}
-
-func checkComplete(deviceName string) bool {
-	//裁剪领主头像
-	return Compare1(entity.MasterImg(deviceName), deviceName)
-}
-
-//校验是否有需要关闭窗口
-func closePop(device string) {
+func CheckStart(device string) bool {
 	if Compare1(entity.Img8(device), device) {
 		adb.ClickPoint(entity.P64, 2, device)
 		adb.ClickPoint(entity.P55, 1, device)
 	}
+	//关闭窗口
+	ClosePop(device)
+	//校验是否进入主界面
+	return Compare1(entity.MasterImg(device), device)
+}
+
+func ClosePop(device string) {
 	if Compare1(entity.CloseImg(device), device) {
 		adb.ClickPoint(entity.Close, 2, device)
 	}
-	checkBack(device)
+	CheckBack(device)
 }
 
-func checkBack(device string) {
+func CheckBack(device string) {
 	for {
 		if Compare1(entity.BackImg(device), device) {
 			adb.ClickPoint(entity.Back, 2, device)
@@ -50,7 +44,6 @@ func checkBack(device string) {
 			return
 		}
 	}
-
 }
 
 func GetText(device string, cutImg *entity.Img) string {
@@ -97,6 +90,7 @@ func CutImage(shotImg image.Image, cutImg *entity.Img) error {
 	return png.Encode(f, subImg)
 }
 
+//CutImage1 裁剪透明图片
 func CutImage1(shotImg image.Image, cutImg *entity.OcrImg) error {
 	var subImg image.Image
 	var x = cutImg.X

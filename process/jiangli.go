@@ -19,7 +19,7 @@ func jiangLi(account *entity.Account) {
 	t, _ := time.ParseInLocation(utils.DATE_FORMAT, account.LastUpdateTime, time.Local)
 	now := time.Now()
 	sub := now.Sub(t)
-	checkBack(device)
+	utils.CheckBack(device)
 	if sub.Hours() > 12 {
 		zhengWuJiangli(account.Id, device)
 		taskJiangLi(device)
@@ -34,21 +34,21 @@ func jiangLi(account *entity.Account) {
 
 func taskJiangLi(device string) {
 	adb.ClickPoint(entity.P41, 3, device)
-	if !Compare1(entity.JiangLiTaskImg(device), device) {
+	if !utils.Compare1(entity.JiangLiTaskImg(device), device) {
 		fmt.Println(utils.Now(), device, "不是奖励页面")
-		if Compare1(entity.BackImg(device), device) {
+		if utils.Compare1(entity.BackImg(device), device) {
 			adb.ClickPoint(entity.Back, 2, device)
 		}
 		return
 	}
 	fmt.Println(utils.Now(), "领取军备奖励")
-	text := GetText(device, entity.Img2(device))
+	text := utils.GetText(device, entity.Img2(device))
 	if text == "建设任务" {
 		adb.ClickPoint(entity.P51, 2, device)
 	}
 	for {
 		adb.ClickPoint(entity.P42, 1, device)
-		if Compare1(entity.TaskGoImg(device), device) {
+		if utils.Compare1(entity.TaskGoImg(device), device) {
 			adb.ClickPoint(entity.Back, 2, device)
 			break
 		}
@@ -58,7 +58,7 @@ func taskJiangLi(device string) {
 	adb.ClickPoint(entity.P52, 2, device)
 	for {
 		adb.ClickPoint(entity.P44, 1, device)
-		if Compare1(entity.TaskGoImg(device), device) {
+		if utils.Compare1(entity.TaskGoImg(device), device) {
 			adb.ClickPoint(entity.Back, 2, device)
 			break
 		}
@@ -68,7 +68,7 @@ func taskJiangLi(device string) {
 	adb.ClickPoint(entity.P53, 2, device)
 	for {
 		adb.ClickPoint(entity.P46, 1, device)
-		if Compare1(entity.TaskGoImg(device), device) {
+		if utils.Compare1(entity.TaskGoImg(device), device) {
 			adb.ClickPoint(entity.Back, 2, device)
 			break
 		}
@@ -91,7 +91,7 @@ func zhengWuJiangli(id, device string) {
 			fmt.Println(utils.Now(), "序号", id, "未获取到政务日常，退出")
 			return
 		}
-		if Compare1(entity.JiangLiImg(device), device) {
+		if utils.Compare1(entity.JiangLiImg(device), device) {
 			break
 		}
 		adb.ScreenOne(device)

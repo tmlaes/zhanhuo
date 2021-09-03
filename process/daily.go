@@ -38,7 +38,7 @@ func juanxian(device string) {
 	adb.ClickPoint(entity.P80, 2, device)
 	adb.ClickPoint(entity.P81, 2, device)
 	adb.ClickMore(entity.P82, 5, 1, device)
-	if Compare1(entity.Img10(device), device) {
+	if utils.Compare1(entity.Img10(device), device) {
 		adb.ClickPoint(entity.P83, 2, device)
 	}
 	adb.ClickPoint(entity.Close, 2, device)

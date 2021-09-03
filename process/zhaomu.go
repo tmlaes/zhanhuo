@@ -44,7 +44,7 @@ func zhaoMuProcess1(p entity.Point, index int, device string, status int) {
 		adb.ClickPoint(p, 2, device)
 		fmt.Println(utils.Now(), device, "点击招募按钮")
 		adb.ClickPointOffset(p, 110, 100, 3, device)
-		if Compare1(entity.ZhaoMuImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuImg(device), device) {
 			break
 		}
 		adb.ClickPoint(entity.Task, 2, device)
@@ -88,7 +88,7 @@ func zhaoMuProcess(p entity.Point, index int, device string, status int) {
 
 		adb.ClickPoint(p, 2, device)
 		adb.ClickPointOffset(p, 110, 100, 3, device)
-		if Compare1(entity.ZhaoMuImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuImg(device), device) {
 			break
 		}
 	}
@@ -105,45 +105,45 @@ func getBingYingStatus(device string, level3 int) [4]int {
 	task(device)
 	var status [4]int
 	if level3 > 0 {
-		if Compare1(entity.ZhaoMuBY1KongImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY1KongImg(device), device) {
 			fmt.Println(utils.Now(), device, "第一个兵营状态为空闲中")
 			status[0] = 1
 		}
-		if Compare1(entity.ZhaoMuBY1ShouImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY1ShouImg(device), device) {
 			fmt.Println(utils.Now(), device, "第一个兵营状态为可收取")
 			status[0] = 2
 		}
-		if Compare1(entity.ZhaoMuBY2KongImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY2KongImg(device), device) {
 			fmt.Println(utils.Now(), device, "第二个兵营状态为空闲中")
 			status[1] = 1
 		}
-		if Compare1(entity.ZhaoMuBY2ShouImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY2ShouImg(device), device) {
 			fmt.Println(utils.Now(), device, "第二个兵营状态为可收取")
 			status[1] = 2
 		}
 
-		if Compare1(entity.ZhaoMuBY3KongImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY3KongImg(device), device) {
 			fmt.Println(utils.Now(), device, "第三个兵营状态为空闲中")
 			status[2] = 1
 		}
-		if Compare1(entity.ZhaoMuBY3ShouImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY3ShouImg(device), device) {
 			fmt.Println(utils.Now(), device, "第三个兵营状态为可收取")
 			status[2] = 2
 		}
 	} else {
-		if Compare1(entity.ZhaoMuBY1KongImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY1KongImg(device), device) {
 			fmt.Println(utils.Now(), device, "第一个兵营状态为空闲中")
 			status[0] = 1
 		}
-		if Compare1(entity.ZhaoMuBY1ShouImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY1ShouImg(device), device) {
 			fmt.Println(utils.Now(), device, "第二个兵营状态为可收取")
 			status[0] = 2
 		}
-		if Compare1(entity.ZhaoMuBY2KongImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY2KongImg(device), device) {
 			fmt.Println(utils.Now(), device, "第二个兵营状态为空闲中")
 			status[1] = 1
 		}
-		if Compare1(entity.ZhaoMuBY2ShouImg(device), device) {
+		if utils.Compare1(entity.ZhaoMuBY2ShouImg(device), device) {
 			fmt.Println(utils.Now(), device, "第二个兵营状态为可收取")
 			status[1] = 2
 		}
