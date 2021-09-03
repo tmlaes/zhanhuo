@@ -5,33 +5,86 @@ import (
 	"fmt"
 	"image"
 	"image/png"
+	"io/ioutil"
 	"os/exec"
 	"strconv"
-	"strings"
 	"time"
 	P "zhanhuo/entity"
 )
 
 func Devices() []string {
-	deviceStr := adbShellDevices()
-	return parseDevices(deviceStr)
+	for {
+		devices := adbShellDevices()
+		if len(devices) > 0 {
+			return devices
+		}
+		delay(2)
+	}
 }
 
-func Click(x, y int, times int, device string) {
-	adbShellInputClick(strconv.Itoa(x), strconv.Itoa(y), device)
-	time.Sleep(time.Duration(times) * time.Second)
+func Devices_(arr []string) map[string]string {
+	deviceMap := make(map[string]string)
+	for _, s := range arr {
+		fmt.Println("启动序号：", s)
+		Launch(s)
+		for {
+			ly := ListLy()
+			devices := adbShellDevices()
+			l := len(deviceMap)
+			if len(ly) > l && len(devices) > l {
+				key := devices[l]
+				value := ly[l]
+				deviceMap[key] = value
+				break
+			}
+			<-time.After(time.Duration(1) * time.Second)
+		}
+	}
+	return deviceMap
 }
 
-func ClickMore(x, y int, n, times int, device string) {
+func ClickPoint(point P.Point, times int, device string) {
+	if point.Check {
+		fmt.Println("校验弹窗")
+		close1(device)
+	}
+	adbShellInputClick(strconv.Itoa(point.X), strconv.Itoa(point.Y), device)
+	if times > 0 {
+		delay(times)
+	}
+}
+
+func ClickPoint_(point P.Point, times int, device string) {
+	adbShellInputClick(strconv.Itoa(point.X_), strconv.Itoa(point.Y_), device)
+	delay(times)
+}
+
+func ClickPointOffset(point P.Point, x, y int, times int, device string) {
+	if point.Check {
+		close1(device)
+	}
+	adbShellInputClick(strconv.Itoa(point.X+x), strconv.Itoa(point.Y+y), device)
+	delay(times)
+}
+
+func ClickPointOffset_(point P.Point, x, y int, times int, device string) {
+	adbShellInputClick(strconv.Itoa(point.X_+x), strconv.Itoa(point.Y_+y), device)
+	delay(times)
+}
+
+func ClickMore(point P.Point, n, times int, device string) {
+	if point.Check {
+		close1(device)
+	}
 	for i := 0; i < n; i++ {
-		adbShellInputClick(strconv.Itoa(x), strconv.Itoa(y), device)
-		time.Sleep(time.Duration(times) * time.Second)
+		adbShellInputClick(strconv.Itoa(point.X), strconv.Itoa(point.Y), device)
+		fmt.Println("第", i+1, "次点击")
+		delay(times)
 	}
 }
 
 func Swipe(x, y, x1, y1 int, times int, device string) {
-	adbShellInputSwipe(strconv.Itoa(x), strconv.Itoa(y), strconv.Itoa(x1), strconv.Itoa(y1), device)
-	time.Sleep(time.Duration(times) * time.Second)
+	adbShellInputSwipe(strconv.Itoa(x), strconv.Itoa(y), strconv.Itoa(x1), strconv.Itoa(y1), strconv.Itoa(times), device)
 }
 
 func ScreenShot(imgName, device string) {
@@ -40,78 +93,82 @@ func ScreenShot(imgName, device string) {
 
 func Screenshot(device string) (img image.Image) {
 	cmd := exec.Command("adb", "-s", device, "shell", "screencap", "-p")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	if err := cmd.Run(); err != nil {
-		fmt.Println(err.Error())
+	out, _ := cmd.StdoutPipe()
+	cmd.Start()
+	outBytes, err := ioutil.ReadAll(out)
+	if err != nil {
+		fmt.Println("截屏失败", err.Error())
 		return nil
 	}
-	x := bytes.Replace(out.Bytes(), []byte("\r\n"), []byte("\n"), -1)
+	x := bytes.Replace(outBytes, []byte("\r\n"), []byte("\n"), -1)
 	img, _ = png.Decode(bytes.NewReader(x))
+	cmd.Wait()
+	out.Close()
 	return
 }
 
 func Text(s, device string) {
 	adbShellInputText(s, device)
-	time.Sleep(time.Duration(1) * time.Second)
+	delay(1)
 }
 
 func Key(key, device string) {
 	adbShellInputKey(key, device)
-	time.Sleep(time.Duration(1) * time.Second)
+	delay(1)
 }
 
-func Scroll(index int, device string) {
-	switch index {
-	case 1:
-		ScreenOne(device)
-	case 2:
-		ScreenTwo(device)
-	case 3:
-		ScreenThree(device)
-	case 4:
-		ScreenFour(device)
-	case 5:
-		ScreenFive(device)
-	}
+func ScreenZero(device string) {
+	close1(device)
+	adbShellInputSwipe("0", "0", "1000", "1000", "500", device)
+	delay(1)
+	adbShellInputSwipe("0", "0", "1000", "1000", "500", device)
+	delay(1)
 }
 
 func ScreenOne(device string) {
-	resetPoint(device)
-	Swipe(P.One.X, P.One.Y, P.One.X_, P.One.Y_, 2, device)
+	ScreenZero(device)
+	adbShellInputSwipe("200", "500", "150", "150", "3000", device)
+	delay(2)
 }
 func ScreenTwo(device string) {
-	resetPoint(device)
+	ScreenZero(device)
+	adbShellInputSwipe("690", "1110", "120", "450", "5000", device)
+	delay(2)
 }
 func ScreenThree(device string) {
-	resetPoint(device)
-	Swipe(P.Three.X, P.Three.Y, P.Three.X_, P.Three.Y_, 2, device)
+	ScreenZero(device)
+	adbShellInputSwipe("950", "100", "150", "100", "6000", device)
+	adbShellInputSwipe("200", "600", "200", "200", "5000", device)
+	delay(2)
 }
 func ScreenFour(device string) {
-	resetPoint(device)
-	Swipe(P.Four.X, P.Four.Y, P.Four.X_, P.Four.Y_, 2, device)
+	ScreenZero(device)
+	adbShellInputSwipe("1100", "100", "0", "100", "6000", device)
+	adbShellInputSwipe("200", "600", "200", "200", "3000", device)
+	delay(2)
 }
 
 func ScreenFive(device string) {
-	resetPoint(device)
-	Swipe(P.Five.X, P.Five.Y, P.Five.X_, P.Five.Y_, 2, device)
+	ScreenZero(device)
+	adbShellInputSwipe("0", "1000", "0", "100", "5000", device)
+	adbShellInputSwipe("1000", "1000", "0", "1000", "5000", device)
+	delay(2)
 }
 
-func resetPoint(device string) {
-	fmt.Println(time.Now(), "重置坐标", device)
-	Click(P.Reset.X, P.Reset.Y, 5, device)
-	Click(P.Reset.X, P.Reset.Y, 5, device)
+func ScreenSix(device string) {
+	ScreenZero(device)
+	adbShellInputSwipe("0", "1000", "0", "100", "6000", device)
+	adbShellInputSwipe("500", "1000", "0", "1000", "3000", device)
+	delay(2)
 }
 
-func parseDevices(s string) []string {
-	devices := make([]string, 0)
-	split := strings.Split(s, "\r\n")
-	for i, s2 := range split {
-		if i == 0 || s2 == "" {
-			continue
-		}
-		s3 := strings.Split(s2, "\t")
-		devices = append(devices, s3[0])
-	}
-	return devices
+func ScreenSeven(device string) {
+	adbShellInputSwipe("1000", "1000", "0", "0", "500", device)
+	delay(1)
+	adbShellInputSwipe("400", "1000", "500", "1000", "3000", device)
+	delay(2)
+}
+
+func delay(times int) {
+	<-time.After(time.Duration(times) * time.Second)
 }

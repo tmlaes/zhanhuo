@@ -4,97 +4,145 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"time"
 	"zhanhuo/adb"
 	P "zhanhuo/entity"
 	"zhanhuo/utils"
 )
 
-func YeGuai(account *P.Account) {
-	device := account.Name
-	fmt.Println(time.Now(), device, "读取体力值")
-	text := GetText1(device, P.TiLiImg(device))
+func YeGuai(id, device string, level int) int {
+	closePop(device)
+	fmt.Println(utils.Now(), "打野")
+	text := GetText(device, P.TiLiImg(device))
 	v, _ := strconv.Atoi(text)
-	if v < 100 {
-		return
+	fmt.Println(utils.Now(), device, "体力值：", v)
+	if v < 10 {
+		return level
 	}
-	fmt.Println(time.Now(), device, "体力值：", v)
-	zv := zhanli(device)
-	fmt.Println(time.Now(), device, "战力值：", zv)
-	adb.Click(P.Reset.X, P.Reset.Y, 5, device)
-	for i := 0; i < 10; i++ {
-		fmt.Println(time.Now(), device, "点击搜索按钮")
-		adb.Click(P.Search.X, P.Search.Y, 2, device)
-		fmt.Println(time.Now(), device, "点击怪物图标")
-		adb.Click(P.GW.X, P.GW.Y, 1, device)
-		if i == 0 {
-			//怪物最高等级
-			text1 := GetText1(device, P.GuaiWuImg(device))
-			cb := utils.GetBetweenStr(text1, "战", "级")
-			level, _ := strconv.Atoi(cb)
-			if P.ZhanLiMap[cb] > zv {
-				level = level - 1
-			}
-			fmt.Println(time.Now(), device, "点击等级输入框")
-			adb.Click(P.GWL.X, P.GWL.Y, 1, device)
-			fmt.Println(time.Now(), device, "输入等级")
-			adb.Text(device, strconv.Itoa(level))
-			fmt.Println(time.Now(), device, "回车")
-			adb.Key(device, "4")
-			time.Sleep(time.Duration(1) * time.Second)
+	adb.ClickPoint(P.Reset, 5, device)
+	maxZhanli := getZhanLi(id, device)
+	if statuMap[device] || maxZhanli == 0 {
+		adb.ClickPoint(P.Reset, 5, device)
+		return level
+	}
+	maxLevel := getMaxLevel(maxZhanli)
+	fmt.Println(utils.Now(), device, "最高怪物等级：", maxLevel)
+	if maxLevel == 0 || maxLevel < level {
+		adb.ClickPoint(P.Reset, 5, device)
+		return level
+	}
+	i := 0
+	for ; i < 15; i++ {
+		if v < 10 {
+			break
 		}
-		fmt.Println(time.Now(), device, "点击前往")
-		adb.Click(P.GoTO.X, P.GoTO.Y, 1, device)
-		fmt.Println(time.Now(), device, "关闭前往对话框")
-		adb.Click(P.CloseW.X, P.CloseW.Y, 1, device)
-		for {
-			fmt.Println(time.Now(), device, "点击怪物")
-			adb.Click(P.GgW.X, P.GgW.Y, 2, device)
-			shotImg := adb.Screenshot(device)
-			img := P.GjImg(device)
-			CutImage(shotImg, img)
-			flag := Compare(img.Name, GojImg)
-			if flag {
+		closePop(device)
+		adb.ClickPoint(P.Search, 2, device)
+		adb.ClickPoint(P.GW, 1, device)
+		if maxLevel > level {
+			if level > 0 {
+				adb.ClickPoint(P.P56, 1, device)
+			}
+			level = level + 1
+		}
+		adb.ClickPoint(P.GoTO, 2, device)
+		adb.ClickPoint(P.GgW, 1, device)
+		j := 0
+		for ; j < 5; j++ {
+			fmt.Println(utils.Now(), device, "点击怪物")
+			adb.ClickPoint(P.GgW, 1, device)
+			if Compare1(P.Img3(device), device) {
 				break
 			}
+			if Compare1(P.Img9(device), device) {
+				adb.ClickPoint(P.GoJi, 2, device)
+				adb.ClickPoint(P.P77, 1, device)
+				adb.ClickPoint(P.GoTO, 2, device)
+			}
+
 		}
-		adb.Click(P.GoJi.X, P.GoJi.Y, 3, device)
-		text1 := GetText1(device, P.TimeImg(device))
-		fmt.Println(time.Now(), device, "获取行军时间", text1)
+		if j >= 4 {
+			adb.ClickPoint(P.P55, 1, device)
+			continue
+		}
+		adb.ClickPoint(P.GoJi, 2, device)
+		text1 := GetText(device, P.TimeImg(device))
+		fmt.Println(utils.Now(), device, "获取行军时间", text1)
 		split := strings.Split(text1, ":")
 		min, _ := strconv.Atoi(split[0])
 		sec, _ := strconv.Atoi(split[1])
 		t := 2*(min*60+sec) + 3
-		adb.Click(P.CF.X, P.CF.Y, t, device)
+		adb.ClickPoint(P.CF, t, device)
+		v = v - 10
 	}
-	fmt.Println(time.Now(), device, "怪物攻击完成")
-	adb.Click(P.Reset.X, P.Reset.Y, 5, device)
+	if i > 13 {
+		adb.Quit(id)
+		statuMap[device] = true
+		return level
+	}
+	fmt.Println(utils.Now(), device, "打野完成")
+	zhiliao(device)
+	return level
 }
 
-func zhanli(device string) int {
-	fmt.Println(time.Now(), device, "读取战力值")
-	for {
-		adb.ScreenOne(device)
-		fmt.Println(time.Now(), device, "点击战争广场")
-		adb.Click(P.ZhanZhen.X, P.ZhanZhen.Y, 2, device)
-		fmt.Println(time.Now(), device, "点击战争广场招募")
-		adb.Click(P.ZhanZhen.X_+110, P.ZhanZhen.Y_-20, 3, device)
-		shotImg := adb.Screenshot(device)
-		img := P.BuDuiImg(device)
-		CutImage(shotImg, img)
-		flag := Compare(img.Name, BuDuiImg)
-		if flag {
+func getZhanLi(id, device string) int64 {
+	adb.ClickPoint(P.Search, 2, device)
+	adb.ClickPoint(P.GW, 1, device)
+	adb.ClickPoint(P.GoTO, 2, device)
+	adb.ClickPoint(P.P55, 2, device)
+	for i := 0; i < 10; i++ {
+		if i > 8 {
+			adb.Quit(id)
+			statuMap[device] = true
+			fmt.Println(utils.Now(), "序号", id, "未获取到怪物，退出")
+			return 0
+		}
+		fmt.Println(utils.Now(), device, "点击怪物")
+		adb.ClickPoint(P.GgW, 1, device)
+		if Compare1(P.Img3(device), device) {
 			break
 		}
 	}
-	fmt.Println(time.Now(), device, "点击编队一")
-	adb.Click(P.BD1.X, P.BD1.Y, 2, device)
-	fmt.Println(time.Now(), device, "获取战力")
-	text := GetText1(device, P.ZhanliImg(device))
-	v, _ := strconv.Atoi(text)
-	fmt.Println(time.Now(), device, "点击返回")
-	adb.Click(P.Back.X, P.Back.Y, 2, device)
-	fmt.Println(time.Now(), device, "点击返回")
-	adb.Click(P.Back.X, P.Back.Y, 2, device)
-	return v
+	adb.ClickPoint(P.GoJi, 2, device)
+	if Compare1(P.Img6(device), device) {
+		fmt.Println(utils.Now(), device, "队伍不足")
+		adb.ClickPoint(P.Back, 2, device)
+		return 0
+	}
+	adb.ClickPoint(P.P57, 2, device)
+	adb.ClickPoint(P.P58, 2, device)
+	text := GetText(device, P.Img4(device))
+	zl, err := strconv.ParseInt(text, 10, 64)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(utils.Now(), device, "攻击力：", zl)
+	adb.ClickPoint(P.Back, 2, device)
+	return zl
+}
+
+func getMaxLevel(zl int64) int {
+	for index, value := range P.ZhanLiArr {
+		if value > zl {
+			return index
+		}
+	}
+	return 1
+}
+
+func zhiliao(device string) {
+	closePop(device)
+	adb.ClickPoint(P.Reset, 5, device)
+	closePop(device)
+	fmt.Println(utils.Now(), device, "治疗伤兵")
+	adb.ClickPointOffset(P.YiYuan, -10, -80, 3, device)
+	if Compare1(P.BackImg(device), device) {
+		adb.ClickPoint(P.CF, 1, device)
+		checkZiYuanBao(device)
+	}
+}
+
+func Zhiliao(device string) {
+	fmt.Println(utils.Now(), device, "点击治疗伤完成")
+	adb.ClickPointOffset(P.YiYuan, -10, -80, 3, device)
 }

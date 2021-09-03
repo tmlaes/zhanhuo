@@ -33,3 +33,16 @@ func WriteJons(account *entity.Account) {
 	}
 	f.Write(data)
 }
+
+func ReadDevices() [][]string {
+	f, err := os.Open("./devices.json")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+	var ret [][]string
+	if err = json.NewDecoder(f).Decode(&ret); err != nil {
+		panic(err)
+	}
+	return ret
+}
