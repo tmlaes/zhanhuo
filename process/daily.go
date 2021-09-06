@@ -44,6 +44,7 @@ func daily(account *entity.Account) {
 func caiLiao(device string, index int) {
 	adb.ScreenThree(device)
 	adb.ClickPoint(entity.CL, 2, device)
+	adb.ClickPoint(entity.CL, 2, device)
 	//x+140    y+140
 	if index > 15 {
 		index = 0
@@ -51,7 +52,6 @@ func caiLiao(device string, index int) {
 	y := index / 5
 	x := (index - y*5) % 5
 	p := entity.Point{X: 70 + 140*x, Y: 910 + 140*y, Desc: "点击材料"}
-	adb.ClickPoint(p, 1, device)
 	adb.ClickPoint(p, 2, device)
 	adb.ClickPoint(entity.Back, 2, device)
 }
