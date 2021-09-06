@@ -407,3 +407,10 @@ func JiangLiTaskImg(deviceName string) *Img {
 		330, 20, 60, 30,
 	}
 }
+func YeWaiImg(deviceName string) *Img {
+	return &Img{
+		deviceName + "_yewai.png",
+		"images/yewai.png",
+		40, 880, 30, 20,
+	}
+}

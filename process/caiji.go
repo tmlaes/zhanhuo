@@ -11,14 +11,14 @@ import (
 )
 
 func Caiji(account *entity.Account) {
-	adb.ClickPoint(entity.Reset, 5, account.Name)
+	adb.ClickPoint(entity.Reset, 8, account.Name)
 	r := lianMengKuang(account.Name)
 	if !r {
 		puTongKuang(account)
 	}
 	fmt.Println(utils.Now(), account.Name, "采集完成")
 	//account.CaiJiTime = getCaijiTime(account.Name)
-	adb.ClickPoint(entity.Reset, 5, account.Name)
+	adb.ClickPoint(entity.Reset, 8, account.Name)
 }
 
 func puTongKuang(account *entity.Account) {

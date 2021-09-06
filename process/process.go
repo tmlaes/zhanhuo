@@ -11,7 +11,6 @@ import (
 )
 
 var wg1 sync.WaitGroup
-var statuMap = make(map[string]bool)
 
 func Process() {
 	fmt.Println("******************升级账号******************")
@@ -39,19 +38,10 @@ func doProcess(account *entity.Account) {
 	device := account.Name
 	start(device)
 	jiangLi(account)
-	if statuMap[device] {
-		return
-	}
 	daily(account)
 	build(account)
-	if statuMap[device] {
-		return
-	}
 	ZhaoMu(account)
 	YeGuai(account)
-	if statuMap[device] {
-		return
-	}
 	Caiji(account)
 	Zhiliao(device)
 	adb.Quit(account.Id)

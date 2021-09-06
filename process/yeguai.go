@@ -2,6 +2,7 @@ package process
 
 import (
 	"fmt"
+	"runtime"
 	"strconv"
 	"strings"
 	"zhanhuo/adb"
@@ -21,16 +22,16 @@ func YeGuai(account *entity.Account) int {
 	if v < 10 {
 		return level
 	}
-	adb.ClickPoint(entity.Reset, 5, device)
+	adb.ClickPoint(entity.Reset, 8, device)
 	maxZhanli := getZhanLi(id, device)
-	if statuMap[device] || maxZhanli == 0 {
-		adb.ClickPoint(entity.Reset, 5, device)
+	if maxZhanli == 0 {
+		adb.ClickPoint(entity.Reset, 8, device)
 		return level
 	}
 	maxLevel := getMaxLevel(maxZhanli)
 	fmt.Println(utils.Now(), id, device, "最高怪物等级：", maxLevel)
 	if maxLevel == 0 || maxLevel < level {
-		adb.ClickPoint(entity.Reset, 5, device)
+		adb.ClickPoint(entity.Reset, 8, device)
 		return level
 	}
 	i := 0
@@ -79,7 +80,7 @@ func YeGuai(account *entity.Account) int {
 	}
 	if i > 13 {
 		adb.Quit(id)
-		statuMap[device] = true
+		runtime.Goexit()
 		return level
 	}
 	fmt.Println(utils.Now(), id, device, "打野完成")
@@ -95,8 +96,8 @@ func getZhanLi(id, device string) int64 {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, device, "未获取到怪物，退出")
+			runtime.Goexit()
 			return 0
 		}
 		fmt.Println(utils.Now(), id, device, "点击怪物")
@@ -134,7 +135,7 @@ func getMaxLevel(zl int64) int {
 }
 
 func zhiliao(device string) {
-	adb.ClickPoint(entity.Reset, 5, device)
+	adb.ClickPoint(entity.Reset, 8, device)
 	fmt.Println(utils.Now(), device, "治疗伤兵")
 	adb.ClickPointOffset(entity.YiYuan, -10, -80, 3, device)
 	if adb.Compare1(entity.BackImg(device), device) {

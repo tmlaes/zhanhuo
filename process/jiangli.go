@@ -2,6 +2,7 @@ package process
 
 import (
 	"fmt"
+	"runtime"
 	"time"
 	"zhanhuo/adb"
 	"zhanhuo/entity"
@@ -19,12 +20,7 @@ func jiangLi(account *entity.Account) {
 	adb.CheckBack(device)
 	if sub.Hours() > 12 {
 		zhengWuJiangli(account.Id, device)
-		taskJiangLi(device)
-		account.LastUpdateTime = now.Format(utils.DATE_FORMAT)
-		utils.WriteJons(account)
-		if statuMap[device] {
-			return
-		}
+		//taskJiangLi(device)
 	}
 	maCheJiangLi(device)
 }
@@ -84,8 +80,8 @@ func zhengWuJiangli(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到政务日常，退出")
+			runtime.Goexit()
 			return
 		}
 		if adb.Compare1(entity.JiangLiImg(device), device) {

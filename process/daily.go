@@ -30,9 +30,33 @@ func daily(account *entity.Account) {
 			utils.WriteJons(account)
 		}
 	}
+	t, _ := time.ParseInLocation(utils.DATE_FORMAT, account.LastUpdateTime, time.Local)
+	sub := now.Sub(t)
+	if sub >= 12 {
+		caiLiao(device, account.CaiLiao)
+		account.LastUpdateTime = now.Format(utils.DATE_FORMAT)
+		account.CaiLiao = account.CaiLiao + 1
+		utils.WriteJons(account)
+	}
+
 }
 
-func juanxian(device string) {
+func caiLiao(device string, index int) {
+	adb.ScreenThree(device)
+	adb.ClickPoint(entity.CL, 2, device)
+	//x+140    y+140
+	if index > 15 {
+		index = 0
+	}
+	y := index / 5
+	x := (index - y*5) % 5
+	p := entity.Point{X: 70 + 140*x, Y: 910 + 140*y, Desc: "点击材料"}
+	adb.ClickPoint(p, 1, device)
+	adb.ClickPoint(p, 2, device)
+	adb.ClickPoint(entity.Back, 2, device)
+}
+
+func juanXian(device string) {
 	fmt.Println(utils.Now(), device, "联盟捐献")
 	adb.ClickPoint(entity.P79, 2, device)
 	adb.ClickPoint(entity.P80, 2, device)

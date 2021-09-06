@@ -2,6 +2,7 @@ package process
 
 import (
 	"fmt"
+	"runtime"
 	"zhanhuo/adb"
 	"zhanhuo/entity"
 	"zhanhuo/utils"
@@ -41,10 +42,7 @@ func update(id, operation, device string) bool {
 		updateJiJiu(id, device)
 	default:
 		fmt.Println(utils.Now(), "序号", id, operation, "未找到升级建筑")
-		statuMap[device] = true
-		return false
-	}
-	if statuMap[device] {
+		runtime.Goexit()
 		return false
 	}
 	return checkZiYuanBao(device)
@@ -55,8 +53,8 @@ func updateChengbao(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到城堡升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenOne(device)
@@ -75,8 +73,8 @@ func updateChengQiang(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到城墙升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -96,8 +94,8 @@ func updateCangku(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到仓库升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenOne(device)
@@ -116,8 +114,8 @@ func updateZhanZheng(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到战争广场升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenOne(device)
@@ -136,8 +134,8 @@ func updateYiYuan(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到医院升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -157,8 +155,8 @@ func updateXueyuan(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到学院升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -178,8 +176,8 @@ func updateRongLian(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到熔炼升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -199,8 +197,8 @@ func updateShiGuan(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到使馆升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -220,8 +218,8 @@ func updateZhenCha(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到侦察塔升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenFour(device)
@@ -240,8 +238,8 @@ func updateBingYing1(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到兵营1升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		checkLianMengLiWu(device)
@@ -261,8 +259,8 @@ func updateBingYing2(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到兵营2升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenOne(device)
@@ -281,8 +279,8 @@ func updateNongChang(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到农场升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenFive(device)
@@ -301,8 +299,8 @@ func updateMuChang(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到木场升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenFive(device)
@@ -321,8 +319,8 @@ func updateShiBing(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到士兵训练营升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenFive(device)
@@ -341,8 +339,8 @@ func updateJiJiu(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到急救帐篷升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		adb.ScreenFive(device)
@@ -404,6 +402,7 @@ func checkZiYuanBao(device string) bool {
 }
 
 func checkLianMengLiWu(device string) {
+	adb.ScreenZero(device)
 	adb.ClickPoint(entity.P85, 0, device)
 	adb.ClickPoint(entity.P85, 2, device)
 	if adb.Compare1(entity.Img11(device), device) {

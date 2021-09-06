@@ -35,9 +35,6 @@ func build(account *entity.Account) {
 			continue
 		}
 		b := update(account.Id, item.Name, device)
-		if statuMap[device] {
-			return
-		}
 		if b {
 			account.SetField(item.Name, oldLevel+1)
 			account.BuildTime = getBuildTime(device)
@@ -46,9 +43,6 @@ func build(account *entity.Account) {
 		}
 	}
 	update(account.Id, "ChengBao", device)
-	if statuMap[device] {
-		return
-	}
 	account.SetField("ChengBao", level+1)
 	account.BuildTime = getBuildTime(device)
 	utils.WriteJons(account)

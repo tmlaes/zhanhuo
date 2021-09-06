@@ -2,6 +2,7 @@ package process
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 	"time"
 	"zhanhuo/adb"
@@ -41,17 +42,8 @@ func createOne(device string, index string) {
 		}
 	}
 	createTwo(index, device)
-	if statuMap[device] {
-		return
-	}
 	createThree(index, device)
-	if statuMap[device] {
-		return
-	}
 	createFour(index, device)
-	if statuMap[device] {
-		return
-	}
 	createFive(device)
 	createSix(device)
 	account := createAccount(device, index)
@@ -109,8 +101,8 @@ func createTwo(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到城堡升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		img := entity.ChengBaoImg(device)
@@ -149,9 +141,6 @@ func createTwo(id, device string) {
 	adb.ClickPoint(entity.P37, 2, device)
 	adb.ClickPoint(entity.P36, 4, device)
 	check1(id, device)
-	if statuMap[device] {
-		return
-	}
 	adb.ClickPoint(entity.P37, 2, device)
 	adb.ClickPoint(entity.P29, 3, device)
 	adb.ClickPoint(entity.P30, 3, device)
@@ -200,8 +189,8 @@ func createThree(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到仓库升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		img := entity.CangKuImg(device)
@@ -219,8 +208,8 @@ func createThree(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到战争广场升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		img := entity.ZhanZhengImg(device)
@@ -247,8 +236,8 @@ func createFour(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到医院升级按钮，退出")
+			runtime.Goexit()
 			return
 		}
 		img := entity.YiYuanImg(device)
@@ -390,8 +379,8 @@ func check1(id, device string) {
 	for i := 0; i < 10; i++ {
 		if i > 8 {
 			adb.Quit(id)
-			statuMap[device] = true
 			fmt.Println(utils.Now(), "序号", id, "未获取到用户协议，退出")
+			runtime.Goexit()
 			return
 		}
 		img := entity.XieYiImg(device)

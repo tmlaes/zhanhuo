@@ -28,6 +28,7 @@ type Account struct {
 	BuildTime      string `json:"buildTime"`
 	LastUpdateTime string `json:"lastUpdateTime"`
 	FengShouTime   string `json:"fengShouTime"`
+	CaiLiao        int    `json:"caiLiao"`
 }
 
 type BingYingVO struct {
