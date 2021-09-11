@@ -371,8 +371,8 @@ func createSix(device string) {
 		adb.ClickPoint(entity.GoTO, 2, device)
 	}
 	adb.ClickPoint(entity.P55, 2, device)
-	adb.ClickPoint(entity.Reset, 6, device)
-
+	adb.ClickPoint(entity.Reset, 8, device)
+	adb.ClosePop(device)
 }
 
 func check1(id, device string) {
@@ -465,5 +465,6 @@ func createAccount(device string, index string) *entity.Account {
 	acc.MuChang = 5
 	acc.ShiBing = 5
 	acc.JiJiu = 5
+	acc.CaiLiao = 4
 	return acc
 }

@@ -231,7 +231,7 @@ func TaskGoImg(deviceName string) *Img {
 	return &Img{
 		deviceName + "_taskgo.png",
 		"images/taskgo.png",
-		320, 1160, 70, 40,
+		335, 1165, 50, 30,
 	}
 }
 
@@ -405,12 +405,5 @@ func JiangLiTaskImg(deviceName string) *Img {
 		deviceName + "_jianglitask.png",
 		"images/jianglitask.png",
 		330, 20, 60, 30,
-	}
-}
-func YeWaiImg(deviceName string) *Img {
-	return &Img{
-		deviceName + "_yewai.png",
-		"images/yewai.png",
-		40, 880, 30, 20,
 	}
 }
