@@ -58,7 +58,7 @@ func adbShellDevices() []string {
 func ListLy() []string {
 	var enc mahonia.Decoder
 	enc = mahonia.NewDecoder("gbk")
-	cmd := exec.Command("D:\\BaiZhi\\LSPlayer\\lsconsole.exe", "list2")
+	cmd := exec.Command("D:\\BaiZhi\\LSPlayer64\\lsconsole.exe", "list2")
 	out, _ := cmd.StdoutPipe()
 	cmd.Start()
 	reader := enc.NewReader(out)
@@ -74,7 +74,7 @@ func ListLy() []string {
 //action <--name mnq_name | --index mnq_idx> --key --value
 func Shake(index string) {
 	//dnconsole.exe action --name *** --key call.shake --value null
-	cmd := exec.Command("D:\\BaiZhi\\LSPlayer\\lsconsole.exe", "action", "--index", index, "--key", "call.shake", "--value", "null")
+	cmd := exec.Command("D:\\BaiZhi\\LSPlayer64\\lsconsole.exe", "action", "--index", index, "--key", "call.shake", "--value", "null")
 	err := cmd.Start()
 	if err != nil {
 		fmt.Println(err)
@@ -85,7 +85,7 @@ func Shake(index string) {
 func Launch(index string) {
 	//lsconsole.exe launch --name 雷神模拟器
 	//lsconsole.exe launch --index 0
-	cmd := exec.Command("D:\\BaiZhi\\LSPlayer\\lsconsole.exe", "launch", "--index", index)
+	cmd := exec.Command("D:\\BaiZhi\\LSPlayer64\\lsconsole.exe", "launch", "--index", index)
 	cmd.Start()
 	cmd.Wait()
 }
@@ -93,13 +93,13 @@ func Launch(index string) {
 func Quit(index string) {
 	//lsconsole.exe launch --name 雷神模拟器
 	//lsconsole.exe launch --index 0
-	cmd := exec.Command("D:\\BaiZhi\\LSPlayer\\lsconsole.exe", "quit", "--index", index)
+	cmd := exec.Command("D:\\BaiZhi\\LSPlayer64\\lsconsole.exe", "quit", "--index", index)
 	cmd.Start()
 	cmd.Wait()
 }
 
 func Quitall() {
-	cmd := exec.Command("D:\\BaiZhi\\LSPlayer\\lsconsole.exe", "quitall")
+	cmd := exec.Command("D:\\BaiZhi\\LSPlayer64\\lsconsole.exe", "quitall")
 	cmd.Start()
 	cmd.Wait()
 }
