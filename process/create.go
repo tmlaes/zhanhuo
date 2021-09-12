@@ -31,6 +31,7 @@ func Create() {
 func createOne(device string, index string) {
 	adb.ClickPoint(entity.Game, 3, device)
 	adb.ClickMore(entity.P2, 6, 2, device)
+	delay(30)
 	ticker := time.NewTicker(3 * time.Second)
 	for range ticker.C {
 		startText := adb.GetText(device, entity.StartImg(device))
