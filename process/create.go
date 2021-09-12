@@ -276,13 +276,7 @@ func createFour(id, device string) {
 	adb.ScreenSeven(device)
 	adb.ScreenSeven(device)
 	adb.ClickPoint(entity.ZY18, 3, device)
-	for i := 0; i < 5; i++ {
-		if adb.Compare1(entity.ShiBingImg(device), device) {
-			break
-		}
-		adb.ClickPoint(entity.Left, 2, device)
-	}
-	adb.ClickPoint(entity.P36, 2, device)
+	adb.ClickPoint(entity.P36, 3, device)
 	adb.ClickPoint(entity.ZY18, 2, device)
 	adb.ClickPoint_(entity.ZY18, 3, device)
 	adb.ClickMore(entity.P36, 4, 1, device)
