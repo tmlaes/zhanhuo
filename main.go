@@ -28,7 +28,6 @@ func main() {
 			<-time.After(time.Duration(1) * time.Hour)
 		}
 	}
-
 	//test()
 }
 
@@ -47,7 +46,7 @@ func test() {
 	//adb.ClickPoint(entity.Close2,0,devices[0])
 	//text1 := process.GetText1(devices[0], P.Img7(devices[0]))
 	//fmt.Println(text1)
-	if adb.Compare1(entity.TaskGoImg(devices[0]), devices[0]) {
+	if adb.Compare1(entity.ShiBingImg(devices[0]), devices[0]) {
 		fmt.Println("匹配成功")
 	}
 

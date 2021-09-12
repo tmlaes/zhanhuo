@@ -276,8 +276,7 @@ func createFour(id, device string) {
 	adb.ScreenSeven(device)
 	adb.ClickPoint(entity.ZY18, 3, device)
 	for i := 0; i < 5; i++ {
-		img := entity.ShiBingImg(device)
-		if adb.Compare1(img, device) {
+		if adb.Compare1(entity.ShiBingImg(device), device) {
 			break
 		}
 		adb.ClickPoint(entity.Left, 2, device)
@@ -321,7 +320,7 @@ func createFive(device string) {
 	arr[11] = entity.ZY11
 	for i := 0; i < len(arr); i++ {
 		adb.ClickPoint(arr[i], 2, device)
-		adb.ClickPoint_(arr[i], 2, device)
+		adb.ClickPoint_(arr[i], 3, device)
 		adb.ClickPoint(entity.P36, 1, device)
 		adb.ClickPoint(entity.Back, 2, device)
 	}
@@ -337,17 +336,17 @@ func createFive(device string) {
 			adb.ScreenFive(device)
 		}
 		adb.ClickPoint(arr1[i], 2, device)
-		adb.ClickPoint_(arr1[i], 2, device)
+		adb.ClickPoint_(arr1[i], 3, device)
 		adb.ClickPoint(entity.P36, 1, device)
 		adb.ClickPoint(entity.Back, 2, device)
 	}
 	adb.ScreenFive(device)
 	adb.ClickPoint(entity.ZYZ2, 2, device)
 	adb.ClickPoint(entity.P38, 2, device)
-	adb.ClickPoint(entity.ZY19, 2, device)
+	adb.ClickPoint(entity.ZY19, 3, device)
 	adb.ClickPoint(entity.P36, 2, device)
 	adb.ClickPoint(entity.ZY19, 2, device)
-	adb.ClickPoint_(entity.ZY19, 2, device)
+	adb.ClickPoint_(entity.ZY19, 3, device)
 	adb.ClickMore(entity.P36, 4, 1, device)
 	adb.ClickPoint(entity.Back, 3, device)
 }
@@ -372,7 +371,7 @@ func createSix(device string) {
 	}
 	adb.ClickPoint(entity.P55, 2, device)
 	adb.ClickPoint(entity.Reset, 8, device)
-	adb.ClosePop(device)
+	adb.CheckStart(device)
 }
 
 func check1(id, device string) {
@@ -410,15 +409,15 @@ func res(device string) {
 	for i := 0; i < len(arr); i++ {
 		if i == 3 {
 			adb.ClickPoint(arr[i], 2, device)
-			adb.ClickPoint_(arr[i], 2, device)
+			adb.ClickPoint_(arr[i], 3, device)
 			adb.ClickMore(entity.P36, 3, 1, device)
 			adb.ClickPoint(entity.Back, 2, device)
 			continue
 		}
-		adb.ClickPoint(arr[i], 2, device)
+		adb.ClickPoint(arr[i], 3, device)
 		adb.ClickPoint(entity.P36, 2, device)
 		adb.ClickPoint(arr[i], 2, device)
-		adb.ClickPoint_(arr[i], 2, device)
+		adb.ClickPoint_(arr[i], 3, device)
 		adb.ClickMore(entity.P36, 3, 1, device)
 		adb.ClickPoint(entity.Back, 2, device)
 	}
@@ -436,9 +435,9 @@ func res(device string) {
 			adb.ScreenFive(device)
 		}
 		adb.ClickPoint(arr1[i], 2, device)
-		adb.ClickPoint(entity.P36, 2, device)
+		adb.ClickPoint(entity.P36, 3, device)
 		adb.ClickPoint(arr1[i], 2, device)
-		adb.ClickPoint_(arr1[i], 2, device)
+		adb.ClickPoint_(arr1[i], 3, device)
 		adb.ClickMore(entity.P36, 3, 1, device)
 		adb.ClickPoint(entity.Back, 2, device)
 	}
