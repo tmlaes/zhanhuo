@@ -20,7 +20,7 @@ func jiangLi(account *entity.Account) {
 	adb.CheckBack(device)
 	if sub.Hours() > 12 {
 		zhengWuJiangli(account.Id, device)
-		//taskJiangLi(device)
+		taskJiangLi(device)
 	}
 	maCheJiangLi(device)
 }

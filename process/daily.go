@@ -32,7 +32,7 @@ func daily(account *entity.Account) {
 	}
 	t, _ := time.ParseInLocation(utils.DATE_FORMAT, account.LastUpdateTime, time.Local)
 	sub := now.Sub(t)
-	if sub >= 12 {
+	if sub.Hours() >= 12 {
 		caiLiao(device, account.CaiLiao)
 		account.LastUpdateTime = now.Format(utils.DATE_FORMAT)
 		account.CaiLiao = account.CaiLiao + 1

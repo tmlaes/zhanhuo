@@ -61,6 +61,8 @@ func YeGuai(account *entity.Account) int {
 				adb.ClickPoint(entity.GoJi, 2, device)
 				adb.ClickPoint(entity.P77, 1, device)
 				adb.ClickPoint(entity.GoTO, 2, device)
+				j = 5
+				break
 			}
 
 		}
@@ -89,12 +91,13 @@ func YeGuai(account *entity.Account) int {
 }
 
 func getZhanLi(id, device string) int64 {
+	fmt.Println(utils.Now(), "序号", id, device, "开始获取战力")
 	adb.ClickPoint(entity.Search, 2, device)
 	adb.ClickPoint(entity.GW, 1, device)
 	adb.ClickPoint(entity.GoTO, 2, device)
 	adb.ClickPoint(entity.P55, 2, device)
-	for i := 0; i < 10; i++ {
-		if i > 8 {
+	for i := 0; i < 5; i++ {
+		if i > 4 {
 			adb.Quit(id)
 			fmt.Println(utils.Now(), "序号", id, device, "未获取到怪物，退出")
 			runtime.Goexit()
@@ -104,6 +107,11 @@ func getZhanLi(id, device string) int64 {
 		adb.ClickPoint(entity.GgW, 1, device)
 		if adb.Compare1(entity.Img3(device), device) {
 			break
+		}
+		if adb.Compare1(entity.Img9(device), device) {
+			adb.ClickPoint(entity.GoJi, 2, device)
+			adb.ClickPoint(entity.P77, 1, device)
+			adb.ClickPoint(entity.GoTO, 2, device)
 		}
 	}
 	adb.ClickPoint(entity.GoJi, 2, device)
