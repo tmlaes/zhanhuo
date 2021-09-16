@@ -21,6 +21,7 @@ func Process() {
 		//读取配置
 		for device, _ := range devices {
 			wg1.Add(1)
+			delay(10)
 			go startDevice(device)
 		}
 		wg1.Wait()
@@ -41,6 +42,7 @@ func doProcess(account *entity.Account) {
 	daily(account)
 	build(account)
 	ZhaoMu(account)
+	Skill(account)
 	YeGuai(account)
 	Caiji(account)
 	Zhiliao(device)

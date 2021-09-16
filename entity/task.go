@@ -21,7 +21,10 @@ var level16 = []task{{"ChengQiang", 16}, {"MuChang", 16}}
 var level17 = []task{{"ChengQiang", 17}, {"Tie", 17}}
 var level18 = []task{{"ChengQiang", 18}, {"RongLian", 18}}
 var level19 = []task{{"ChengQiang", 19}, {"BingYing1", 19}, {"XueYuan", 19}}
+
 var TaskMap = make(map[string][]task)
+var KejiArr = []Point{}
+var RollSkillArr = []Point{}
 
 func init() {
 	TaskMap["level6"] = level6
@@ -58,4 +61,42 @@ func init() {
 	ZhanLiArr[16] = 110500
 	ZhanLiArr[17] = 134000
 
+	for i := 0; i < 11; i++ {
+		if i < 4 {
+			KejiArr = append(KejiArr, KeJiJunShi1)
+			continue
+		}
+		if i < 7 {
+			KejiArr = append(KejiArr, KeJiFaZhan1)
+			continue
+		}
+		if i < 10 {
+			KejiArr = append(KejiArr, KeJiFaZhan3)
+			continue
+		}
+	}
+
+	RollSkillArr = append(RollSkillArr, SkillFaZhan1)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan2)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan3)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan4)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan5)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan6)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan7)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan8)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan9)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan11)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan12)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan14)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan15)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan17)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan20)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan21)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan23)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan24)
+	RollSkillArr = append(RollSkillArr, SkillFaZhan25)
+	RollSkillArr = append(RollSkillArr, SkillZhanZheng1)
+	RollSkillArr = append(RollSkillArr, SkillZhanZheng2)
+	RollSkillArr = append(RollSkillArr, SkillZhanZheng3)
+	RollSkillArr = append(RollSkillArr, SkillZhanZheng4)
 }

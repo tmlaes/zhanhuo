@@ -95,6 +95,67 @@ var (
 	FaShi      = Point{X: 630, Y: 130, Desc: "兵营招募界面法师图标"}
 	Left       = Point{X: 630, Y: 275, Desc: "建造页面左向箭头"}
 
+	//学院科技相关
+	KeJiJunShi1  = Point{X: 550, Y: 460, X_: 350, Y_: 180, Desc: "军事--->>征兵I"}
+	KeJiJunShi2  = Point{X: 550, Y: 460, X_: 130, Y_: 340, Desc: "军事--->>骑术I"}
+	KeJiJunShi3  = Point{X: 550, Y: 460, X_: 590, Y_: 340, Desc: "军事--->>硬弓I"}
+	KeJiJunShi4  = Point{X: 550, Y: 460, X_: 200, Y_: 530, Desc: "军事--->>利剑I"}
+	KeJiJunShi5  = Point{X: 550, Y: 460, X_: 520, Y_: 530, Desc: "军事--->>法师杖I"}
+	KeJiJunShi6  = Point{X: 550, Y: 460, X_: 350, Y_: 630, Desc: "军事--->>扩编I"}
+	KeJiJunShi7  = Point{X: 550, Y: 460, X_: 350, Y_: 860, Desc: "军事--->>军团编制I"}
+	KeJiJunShi8  = Point{X: 550, Y: 460, X_: 120, Y_: 120, Desc: "军事--->>骑兵体魄I"}
+	KeJiJunShi9  = Point{X: 550, Y: 460, X_: 590, Y_: 120, Desc: "军事--->>弓兵体魄I"}
+	KeJiJunShi10 = Point{X: 550, Y: 460, X_: 190, Y_: 1210, Desc: "军事--->>步兵体魄I"}
+	KeJiJunShi11 = Point{X: 550, Y: 460, X_: 520, Y_: 1210, Desc: "军事--->>法师体魄I"}
+
+	KeJiFaZhan1 = Point{X: 160, Y: 460, X_: 350, Y_: 160, Desc: "发展--->>建筑学I"}
+	KeJiFaZhan2 = Point{X: 160, Y: 460, X_: 120, Y_: 330, Desc: "发展--->>体魄I"}
+	KeJiFaZhan3 = Point{X: 160, Y: 460, X_: 590, Y_: 340, Desc: "发展--->>急行军I"}
+	KeJiFaZhan4 = Point{X: 160, Y: 460, X_: 350, Y_: 630, Desc: "发展--->>医疗设施I"}
+	KeJiFaZhan5 = Point{X: 160, Y: 460, X_: 350, Y_: 850, Desc: "发展--->>科研I"}
+	KeJiFaZhan6 = Point{X: 160, Y: 460, X_: 120, Y_: 1020, Desc: "发展--->>医药学I"}
+	KeJiFaZhan7 = Point{X: 160, Y: 460, X_: 590, Y_: 1020, Desc: "发展--->>税率I"}
+	KeJiFaZhan8 = Point{X: 160, Y: 460, X_: 120, Y_: 1240, Desc: "发展--->>急救术I"}
+
+	KeJiZiYuan1 = Point{X: 350, Y: 320, X_: 120, Y_: 170, Desc: "资源--->>复合犁I"}
+	KeJiZiYuan2 = Point{X: 350, Y: 320, X_: 590, Y_: 170, Desc: "资源--->>圆盘锯I"}
+	KeJiZiYuan3 = Point{X: 350, Y: 320, X_: 350, Y_: 470, Desc: "资源--->>负重提升I"}
+	KeJiZiYuan4 = Point{X: 350, Y: 320, X_: 120, Y_: 630, Desc: "资源--->>镰刀I"}
+	KeJiZiYuan5 = Point{X: 350, Y: 320, X_: 590, Y_: 630, Desc: "资源--->>利斧I"}
+	KeJiZiYuan6 = Point{X: 350, Y: 320, X_: 350, Y_: 920, Desc: "资源--->>仓库I"}
+	KeJiZiYuan7 = Point{X: 350, Y: 320, X_: 350, Y_: 1150, Desc: "资源--->>合金钻头I"}
+
+	//角色技能相关
+	SkillFaZhan1    = Point{X: 350, Y: 350, Desc: "发展--->>建筑速度I"}
+	SkillFaZhan2    = Point{X: 350, Y: 600, Desc: "发展--->>提高负重I"}
+	SkillFaZhan3    = Point{X: 350, Y: 850, Desc: "发展--->>丰收"}
+	SkillFaZhan4    = Point{X: 100, Y: 1100, Desc: "发展--->>粮食产量I"}
+	SkillFaZhan5    = Point{X: 600, Y: 1100, Desc: "发展--->>木材产量I"}
+	SkillFaZhan6    = Point{X: 100, Y: 350, Desc: "发展--->>粮食采集I"}
+	SkillFaZhan7    = Point{X: 600, Y: 350, Desc: "发展--->>木材采集I"}
+	SkillFaZhan8    = Point{X: 350, Y: 620, Desc: "发展--->>研究时间I"}
+	SkillFaZhan9    = Point{X: 350, Y: 880, Desc: "发展--->>仓库容量I"}
+	SkillFaZhan10   = Point{X: 100, Y: 1130, Desc: "发展--->>体力恢复I"}
+	SkillFaZhan11   = Point{X: 350, Y: 1130, Desc: "发展--->>石料产量I"}
+	SkillFaZhan12   = Point{X: 600, Y: 1130, Desc: "发展--->>铁矿产量I"}
+	SkillFaZhan13   = Point{X: 100, Y: 380, Desc: "发展--->>打怪行军速度I"}
+	SkillFaZhan14   = Point{X: 350, Y: 380, Desc: "发展--->>石料采集I"}
+	SkillFaZhan15   = Point{X: 600, Y: 380, Desc: "发展--->>铁矿采集I"}
+	SkillFaZhan16   = Point{X: 100, Y: 630, Desc: "发展--->>体力恢复"}
+	SkillFaZhan17   = Point{X: 350, Y: 630, Desc: "发展--->>建筑速度II"}
+	SkillFaZhan18   = Point{X: 350, Y: 880, Desc: "发展--->>提高负重II"}
+	SkillFaZhan19   = Point{X: 100, Y: 1130, Desc: "发展--->>体力恢复II"}
+	SkillFaZhan20   = Point{X: 350, Y: 1130, Desc: "发展--->>粮食产量II"}
+	SkillFaZhan21   = Point{X: 600, Y: 1130, Desc: "发展--->>木材产量II"}
+	SkillFaZhan22   = Point{X: 100, Y: 400, Desc: "发展--->>打怪行军速度II"}
+	SkillFaZhan23   = Point{X: 350, Y: 400, Desc: "发展--->>粮食采集II"}
+	SkillFaZhan24   = Point{X: 600, Y: 400, Desc: "发展--->>木材采集II"}
+	SkillFaZhan25   = Point{X: 350, Y: 650, Desc: "发展--->>采集增速II"}
+	SkillZhanZheng1 = Point{X: 350, Y: 350, Desc: "战争--->>战旗I"}
+	SkillZhanZheng2 = Point{X: 620, Y: 600, Desc: "战争--->>骑兵攻击I"}
+	SkillZhanZheng3 = Point{X: 620, Y: 850, Desc: "战争--->>骑兵体魄I"}
+	SkillZhanZheng4 = Point{X: 350, Y: 1100, Desc: "战争--->>全军召回"}
+
 	//创建账号相关坐标
 	P1  = Point{X: 600, Y: 1100, Desc: "贝拉对话框按钮"}
 	P2  = Point{X: 590, Y: 690, Desc: "启动游戏授权按钮"}
@@ -178,4 +239,9 @@ var (
 	P83 = Point{X: 230, Y: 700, Desc: "一键捐献按钮"}
 	P84 = Point{X: 620, Y: 710, Desc: "领取联盟礼物图标"}
 	P85 = Point{X: 690, Y: 1110, Desc: "滑屏2起点坐标"}
+	P86 = Point{X: 440, Y: 910, Desc: "任务列表科技队列跳转按钮"}
+	P87 = Point{X: 500, Y: 970, Desc: "学院科技研究确认按钮"}
+	P88 = Point{X: 660, Y: 1230, Desc: "角色信息和角色技能图标"}
+	P89 = Point{X: 500, Y: 220, Desc: "角色技能《发展》按钮"}
+	P90 = Point{X: 220, Y: 780, Desc: "角色技能《升级到最大》按钮"}
 )

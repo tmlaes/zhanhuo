@@ -61,16 +61,17 @@ func puTongKuang(account *entity.Account) {
 			break
 		}
 		adb.ClickPoint(entity.GoTO, 3, device)
-		adb.ClickPoint(entity.P55, 2, device)
+		adb.ClickPoint(entity.P63, 1, device)
 		adb.ClickPoint(entity.P63, 2, device)
 		if adb.Compare1(entity.Img6(device), device) {
 			fmt.Println(utils.Now(), device, "队伍不足")
-			adb.ClickPoint(entity.Back, 2, device)
+			adb.ClickMore(entity.P55, 3, 1, device)
 			break
 		}
 		text1 := adb.GetText(device, entity.TimeImg(device))
 		fmt.Println(utils.Now(), device, "获取行军时间", text1)
 		if text1 == "" {
+			adb.ClickPoint(entity.P55, 2, device)
 			i = i - 1
 			index = index + 1
 			continue
@@ -105,7 +106,7 @@ func lianMengKuang(device string) bool {
 
 		if adb.Compare1(entity.Img6(device), device) {
 			fmt.Println(utils.Now(), device, "队伍不足")
-			adb.ClickPoint(entity.Back, 2, device)
+			adb.ClickMore(entity.P55, 3, 1, device)
 			return true
 		}
 		text1 := adb.GetText(device, entity.TimeImg(device))

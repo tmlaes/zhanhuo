@@ -117,7 +117,7 @@ func getZhanLi(id, device string) int64 {
 	adb.ClickPoint(entity.GoJi, 2, device)
 	if adb.Compare1(entity.Img6(device), device) {
 		fmt.Println(utils.Now(), id, device, "队伍不足")
-		adb.ClickPoint(entity.Back, 2, device)
+		adb.ClickMore(entity.P55, 3, 1, device)
 		return 0
 	}
 	adb.ClickPoint(entity.P57, 2, device)

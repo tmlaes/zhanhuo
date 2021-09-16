@@ -25,7 +25,7 @@ func main() {
 	} else {
 		for i := 0; i < 5; i++ {
 			process.Process()
-			<-time.After(time.Duration(1) * time.Hour)
+			<-time.After(time.Duration(30) * time.Minute)
 		}
 	}
 	//test()
@@ -39,21 +39,21 @@ func test() {
 	//for {
 	//	adb.ScreenSeven(devices[0])
 	//adb.ScreenTwo(devices[0])
+	//adb.Swipe(500, 1240, 500, 220, 5000, devices[0])
 	//adb.ScreenShot("ScreenOne.png", devices[0])
-	//shotImg := adb.Screenshot(devices[0])
-	//img := entity.TaskGoImg(devices[0])
-	//adb.CutImage(shotImg, img)
+	shotImg := adb.Screenshot(devices[0])
+	img := entity.Img1(devices[0])
+	adb.CutImage(shotImg, img)
 	//adb.ClickPoint(entity.Close2,0,devices[0])
 	//text1 := process.GetText1(devices[0], P.Img7(devices[0]))
 	//fmt.Println(text1)
-	if adb.Compare1(entity.ShiBingImg(devices[0]), devices[0]) {
-		fmt.Println("匹配成功")
-	}
+	//if adb.Compare1(entity.Img13(devices[0]), devices[0]) {
+	//	fmt.Println("匹配成功")
+	//}
 
-	//shotImg := adb.Screenshot(devices[0])
-	//text := process.GetText(shotImg, entity.Task1Img(devices[0]))
+	//text := adb.GetText(devices[0], entity.Img1(devices[0]))
 	//fmt.Println(text)
-
+	//
 	//img := &entity.OcrImg{
 	//	Name: devices[0] + "task.png",
 	//	Path:"",

@@ -407,3 +407,19 @@ func JiangLiTaskImg(deviceName string) *Img {
 		330, 20, 60, 30,
 	}
 }
+
+func Img13(deviceName string) *Img {
+	return &Img{
+		deviceName + "_pic_13.png",
+		"images/pic_13.png",
+		220, 900, 75, 25,
+	}
+}
+
+func Img1(deviceName string) *Img {
+	return &Img{
+		deviceName + "_pic_1.png",
+		"images/pic_1.png",
+		310, 120, 100, 30,
+	}
+}
