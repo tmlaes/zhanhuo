@@ -26,8 +26,8 @@ func xueYuanSkill(account *entity.Account) {
 		if adb.Compare1(entity.Img13(device), device) {
 			break
 		}
+		adb.ClickPoint(entity.P55, 2, device)
 		if i >= 3 {
-			adb.ClickPoint(entity.P55, 2, device)
 			fmt.Println(utils.Now(), device, "科技队列不处于空闲状态")
 			return
 		}
@@ -47,9 +47,9 @@ func xueYuanSkill(account *entity.Account) {
 }
 
 func roleSkill(account *entity.Account) {
-	t, _ := time.ParseInLocation(utils.DATE_FORMAT, account.LastUpdateTime, time.Local)
+	t, _ := time.ParseInLocation(utils.DATE_FORMAT, account.DateTime, time.Local)
 	sub := time.Now().Sub(t)
-	if sub.Hours() < 12 {
+	if sub.Hours() < 24 {
 		return
 	}
 	defer utils.WriteJons(account)

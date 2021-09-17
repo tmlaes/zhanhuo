@@ -460,5 +460,6 @@ func createAccount(device string, index string) *entity.Account {
 	acc.ShiBing = 5
 	acc.JiJiu = 5
 	acc.CaiLiao = 4
+	acc.DateTime = utils.Now()
 	return acc
 }

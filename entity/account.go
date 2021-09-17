@@ -28,6 +28,7 @@ type Account struct {
 	BuildTime      string `json:"buildTime"`
 	LastUpdateTime string `json:"lastUpdateTime"`
 	FengShouTime   string `json:"fengShouTime"`
+	DateTime       string `json:"dateTime"`
 	CaiLiao        int    `json:"caiLiao"`
 	Keji           int    `json:"keji"`
 	Skill          int    `json:"skill"`
