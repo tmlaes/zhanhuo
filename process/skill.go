@@ -52,6 +52,7 @@ func roleSkill(account *entity.Account) {
 	if sub.Hours() < 24 {
 		return
 	}
+	account.DateTime = utils.Now()
 	defer utils.WriteJons(account)
 	device := account.Name
 	adb.ClickMore(entity.P88, 2, 2, device)
